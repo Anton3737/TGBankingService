@@ -1,0 +1,17 @@
+[
+  {
+    "name": "УКРЕКСІМБАНК",
+    "priceAtCheckout": "0.225 / 0.260",
+    "priceForPurchaseByCard": "0.000 /0.000"
+  },
+  {
+    "name": "ПРАВЕКС БАНК",
+    "priceAtCheckout": "0.220 / 0.260",
+    "priceForPurchaseByCard": "0.000 /0.000"
+  },
+  {
+    "name": "КРЕДИТВЕСТ БАНК",
+    "priceAtCheckout": "0.235 / 0.255",
+    "priceForPurchaseByCard": "0.000 /0.000"
+  }
+]
