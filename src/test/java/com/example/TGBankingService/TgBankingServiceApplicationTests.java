@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class TgBankingServiceApplicationTests {
 
+	//Some comment from Jul
+
 	@Test
 	void contextLoads() {
 	}
