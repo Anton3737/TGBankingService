@@ -1,17 +1,1 @@
-[
-  {
-    "name": "УКРЕКСІМБАНК",
-    "priceAtCheckout": "0.225 / 0.260",
-    "priceForPurchaseByCard": "0.000 /0.000"
-  },
-  {
-    "name": "ПРАВЕКС БАНК",
-    "priceAtCheckout": "0.220 / 0.260",
-    "priceForPurchaseByCard": "0.000 /0.000"
-  },
-  {
-    "name": "КРЕДИТВЕСТ БАНК",
-    "priceAtCheckout": "0.235 / 0.255",
-    "priceForPurchaseByCard": "0.000 /0.000"
-  }
-]
+[{"name":"СЕНС БАНК","priceToBuy":40.0,"priceForSale":39.45},{"name":"ПРИВАТБАНК","priceToBuy":39.7,"priceForSale":39.52},{"name":"ОЩАДБАНК","priceToBuy":40.15,"priceForSale":39.8},{"name":"УКРЕКСІМБАНК","priceToBuy":40.05,"priceForSale":39.68},{"name":"РАЙФФАЙЗЕН БАНК","priceToBuy":0.0,"priceForSale":39.05},{"name":"УКРГАЗБАНК","priceToBuy":0.0,"priceForSale":39.65},{"name":"ПУМБ","priceToBuy":40.2,"priceForSale":0.0},{"name":"УКРСИББАНК","priceToBuy":39.7,"priceForSale":39.14},{"name":"УНІВЕРСАЛ БАНК","priceToBuy":39.0,"priceForSale":0.0},{"name":"КРЕДІ АГРІКОЛЬ БАНК","priceToBuy":39.5,"priceForSale":39.94},{"name":"OTP BANK","priceToBuy":39.75,"priceForSale":39.7},{"name":"КРЕДОБАНК","priceToBuy":39.91,"priceForSale":0.398},{"name":"ПІВДЕННИЙ","priceToBuy":39.5,"priceForSale":39.64},{"name":"ТАСКОМБАНК","priceToBuy":39.85,"priceForSale":39.538},{"name":"АБАНК","priceToBuy":39.9,"priceForSale":39.5},{"name":"АКОРДБАНК","priceToBuy":40.3,"priceForSale":39.93},{"name":"БАНК КРЕДИТ ДНІПРО","priceToBuy":39.89,"priceForSale":39.93},{"name":"ВОСТОК БАНК","priceToBuy":0.0,"priceForSale":39.94},{"name":"ГЛОБУС","priceToBuy":40.0,"priceForSale":39.25},{"name":"ІДЕЯ БАНК","priceToBuy":40.2,"priceForSale":39.9},{"name":"АЛЬЯНС БАНК","priceToBuy":39.5,"priceForSale":39.15},{"name":"МТБ БАНК","priceToBuy":40.0,"priceForSale":0.0},{"name":"ПРАВЕКС БАНК","priceToBuy":40.3,"priceForSale":39.9},{"name":"КОМІНБАНК","priceToBuy":40.0,"priceForSale":40.0},{"name":"БАНК ЛЬВІВ","priceToBuy":40.44,"priceForSale":0.0},{"name":"МІЖНАРОДНИЙ ІНВЕСТИЦІЙНИЙ БАНК","priceToBuy":39.75,"priceForSale":39.778},{"name":"ПІРЕУС БАНК","priceToBuy":0.0,"priceForSale":39.61},{"name":"КЛІРИНГОВИЙ ДІМ","priceToBuy":40.15,"priceForSale":0.0},{"name":"ПОЛТАВА-БАНК","priceToBuy":40.5,"priceForSale":39.674},{"name":"БАНК ІНВЕСТИЦІЙ ТА ЗАОЩАДЖЕНЬ","priceToBuy":40.2,"priceForSale":39.6},{"name":"ІНДУСТРІАЛБАНК","priceToBuy":39.5,"priceForSale":0.0},{"name":"ЮНЕКС БАНК","priceToBuy":40.0,"priceForSale":0.0},{"name":"ГРАНТ","priceToBuy":40.2,"priceForSale":0.0},{"name":"СКАЙ БАНК","priceToBuy":40.3,"priceForSale":38.75},{"name":"КРИСТАЛБАНК","priceToBuy":40.25,"priceForSale":0.0},{"name":"КРЕДИТВЕСТ БАНК","priceToBuy":40.05,"priceForSale":0.0},{"name":"БАНК 3/4","priceToBuy":39.8,"priceForSale":0.0},{"name":"КОМІНВЕСТБАНК","priceToBuy":39.8,"priceForSale":39.55},{"name":"АЛЬТБАНК","priceToBuy":39.7,"priceForSale":39.05},{"name":"ПОЛІКОМБАНК","priceToBuy":40.2,"priceForSale":0.0},{"name":"МОТОР-БАНК","priceToBuy":40.3,"priceForSale":0.0},{"name":"ЄВРОПРОМБАНК","priceToBuy":40.4,"priceForSale":0.0},{"name":"ОКСІ БАНК","priceToBuy":40.2,"priceForSale":39.45},{"name":"ПОРТАЛ","priceToBuy":40.2,"priceForSale":0.0},{"name":"УКРАЇНСЬКИЙ БАНК РЕКОНСТРУКЦІЇ ТА РОЗВИТКУ","priceToBuy":40.2,"priceForSale":0.0},{"name":"ТРАСТ-КАПІТАЛ","priceToBuy":40.5,"priceForSale":0.0},{"name":"БТА БАНК","priceToBuy":39.9,"priceForSale":0.0},{"name":"SPORTBANK","priceToBuy":0.0,"priceForSale":39.538},{"name":"IZIBANK","priceToBuy":39.95,"priceForSale":39.538},{"name":"MONOBANK","priceToBuy":0.0,"priceForSale":39.85},{"name":"РВС БАНК","priceToBuy":40.0,"priceForSale":39.73},{"name":"АГРОПРОСПЕРІС БАНК","priceToBuy":40.3,"priceForSale":40.5},{"name":"АЛЬПАРІ БАНК","priceToBuy":40.0,"priceForSale":0.0}]

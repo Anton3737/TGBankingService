@@ -15,61 +15,64 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    public List CurrencyParser(String url) throws IOException {
-
-        List<BankData> bankDataUSDList = new ArrayList<>();
+    public List<BankData> CurrencyParser(String url) throws IOException {
+        List<BankData> bankDataList = new ArrayList<>();
 
         Connection connection = Jsoup.connect(url);
-
         connection.userAgent("Mozilla/5.0");
         Document document = connection.ignoreContentType(true).get();
 
         Elements postName = document.getElementsByAttributeValue("class", "js-ex-rates mfcur-table-bankname");
-
         String htmlString = postName.toString();
-
         String patternString = "data-title=\"([^\"]*)\" data-card=\"([^\"]*)\"><a .*?>(.*?)</a>";
 
         Pattern pattern = Pattern.compile(patternString);
-
         Matcher matcher = pattern.matcher(htmlString);
 
         while (matcher.find()) {
-            String[] bankDataUSDSArray = new String[3];
-            if (bankDataUSDSArray.length == 3) {
-                // купівля за готівку
-                String dataTitle = matcher.group(1);
-                //  купівля по картці
-                String dataCard = matcher.group(2);
-                String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
-                BankData bankDataUSDObj = new BankData(name, dataTitle, dataCard);
-                bankDataUSDList.add(bankDataUSDObj);
+            String dataTitle = matcher.group(1);
+            String dataCard = matcher.group(2);
+            String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
+
+            double priceToBuy = extractPrice(dataTitle);
+            double priceForSale = extractPrice(dataCard);
+
+            BankData bankData = new BankData(name, priceToBuy, priceForSale);
+            bankDataList.add(bankData);
+        }
+
+        System.out.println("Collection size: " + bankDataList.size());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataList);
+
+        return bankDataList;
+    }
+
+    private double extractPrice(String data) {
+        String pricePattern = "\\d+\\.\\d+";
+
+        Pattern pattern = Pattern.compile(pricePattern);
+        Matcher matcher = pattern.matcher(data);
+
+        double price = 0.0;
+
+        if (matcher.find()) {
+            String priceStr = matcher.group();
+            try {
+                price = Double.parseDouble(priceStr);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
 
-//        while (matcher.find()) {
-//            String[] bankDataUSDSArray = new String[5];
-//            if (bankDataUSDSArray.length == 3) {
-//                String dataTitle = matcher.group(1);
-//                String dataCard = matcher.group(2);
-//                String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
-//                BankData bankDataUSDObj = new BankData(name, dataTitle, dataCard);
-//                bankDataUSDList.add(bankDataUSDObj);
-//            }
-//        }
-
-        System.out.println("розмір колекції " + bankDataUSDList.size());
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataUSDList);
-
-        return bankDataUSDList;
+        return price;
     }
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
-//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
+        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/sek/");  // Курс шведської крони в банках України
