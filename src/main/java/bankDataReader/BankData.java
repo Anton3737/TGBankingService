@@ -1,15 +1,14 @@
 package bankDataReader;
 
 public class BankData {
-
     private String name;
-    private String priceAtCheckout;
-    private String priceForPurchaseByCard;
+    private double priceToBuy;
+    private double priceForSale;
 
-    public BankData(String name, String priceAtCheckout, String priceForPurchaseByCard) {
+    public BankData(String name, double priceToBuy, double priceForSale) {
         this.name = name;
-        this.priceAtCheckout = priceAtCheckout;
-        this.priceForPurchaseByCard = priceForPurchaseByCard;
+        this.priceToBuy = priceToBuy;
+        this.priceForSale = priceForSale;
     }
 
     public String getName() {
@@ -20,28 +19,19 @@ public class BankData {
         this.name = name;
     }
 
-    public String getPriceAtCheckout() {
-        return priceAtCheckout;
+    public double getPriceToBuy() {
+        return priceToBuy;
     }
 
-    public void setPriceAtCheckout(String priceAtCheckout) {
-        this.priceAtCheckout = priceAtCheckout;
+    public void setPriceToBuy(double priceToBuy) {
+        this.priceToBuy = priceToBuy;
     }
 
-    public String getPriceForPurchaseByCard() {
-        return priceForPurchaseByCard;
+    public double getPriceForSale() {
+        return priceForSale;
     }
 
-    public void setPriceForPurchaseByCard(String priceForPurchaseByCard) {
-        this.priceForPurchaseByCard = priceForPurchaseByCard;
+    public void setPriceForSale(double priceForSale) {
+        this.priceForSale = priceForSale;
     }
-
-//    @Override
-//    public String toString() {
-//        return "BankData{" +
-//                "name='" + name + '\'' +
-//                ", priceAtCheckout='" + priceAtCheckout + '\'' +
-//                ", priceForPurchaseByCard='" + priceForPurchaseByCard + '\'' +
-//                '}';
-//    }
 }
