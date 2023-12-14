@@ -31,11 +31,13 @@ public class MinFin {
 
         while (matcher.find()) {
             String dataTitle = matcher.group(1);
-            String dataCard = matcher.group(2);
             String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
 
-            double priceToBuy = extractPrice(dataTitle);
-            double priceForSale = extractPrice(dataCard);
+            String[] prices = dataTitle.split("/");
+
+
+            double priceToBuy = extractPrice(prices[0]);
+            double priceForSale = extractPrice(prices[1]);
 
             BankData bankData = new BankData(name, priceToBuy, priceForSale);
             bankDataList.add(bankData);
@@ -48,6 +50,7 @@ public class MinFin {
 
         return bankDataList;
     }
+
 
     private double extractPrice(String data) {
         String pricePattern = "\\d+\\.\\d+";
@@ -71,8 +74,8 @@ public class MinFin {
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
-        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
+        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
+//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/sek/");  // Курс шведської крони в банках України
