@@ -16,7 +16,10 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    public List<BankData> CurrencyParser(String url) throws IOException {
+    // винести маппер
+
+
+    public List<BankData> сurrencyParser(String url) throws IOException {
         List<BankData> bankDataList = new ArrayList<>();
 
         Connection connection = Jsoup.connect(url);
@@ -70,13 +73,12 @@ public class MinFin {
             }
         }
 //        System.out.println(price);
-
         return price;
     }
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
+        minFin.сurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
@@ -90,7 +92,7 @@ public class MinFin {
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/aud/");  // Курс австралійського долара в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/huf/");  // Курс угорського форінта в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/czk/");  // Курс чеської крони в банках України
-//     minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/ils/");  // Курс ізраїльського шекеля в банках України
+//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/ils/");  // Курс ізраїльського шекеля в банках України
 
     }
 
