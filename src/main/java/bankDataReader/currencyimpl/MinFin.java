@@ -1,4 +1,4 @@
-package bankDataReader;
+package bankDataReader.currencyimpl;
 
 import bankDataReader.dto.BankData;
 import com.fasterxml.jackson.databind.ObjectMapper;
