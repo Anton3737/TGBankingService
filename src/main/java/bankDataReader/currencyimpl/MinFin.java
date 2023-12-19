@@ -76,8 +76,8 @@ public class MinFin {
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
-        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
+        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
+//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/sek/");  // Курс шведської крони в банках України
