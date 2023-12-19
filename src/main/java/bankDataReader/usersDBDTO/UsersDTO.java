@@ -1,4 +1,4 @@
-package usersDBDTO;
+package bankDataReader.usersDBDTO;
 //Описовий клас для створення екземплярів класу для наших користувачів,
 // які будуть додаватись в БД під час підключення до боту
 public class UsersDTO {

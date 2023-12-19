@@ -1,4 +1,4 @@
-package bankDataReader;
+package bankDataReader.enums;
 
 public enum Currency {
     USD,
