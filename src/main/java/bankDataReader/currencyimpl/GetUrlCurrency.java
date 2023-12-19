@@ -1,4 +1,6 @@
-package bankDataReader;
+package bankDataReader.currencyimpl;
+
+import bankDataReader.Currency;
 
 public class GetUrlCurrency {
     public static String getURL(Currency ccy) {
