@@ -66,64 +66,11 @@ public class MinFin {
         return bankDataUSDList;
     }
 
-    public static String getURL(Currency ccy) {
-        //в String ccy мають приходити дані від натискання кнопки в розділі "вибір валюти"
-        String currency = "";
-        switch (ccy) {
-            case USD:
-                currency = "usd";
-                break;
-            case EUR:
-                currency = "eur";
-                break;
-            case GBP:
-                currency = "gbp";
-                break;
-            case CHF:
-                currency = "chf";
-                break;
-            case SEK:
-                currency = "chf";
-                break;
-            case PLN:
-                currency = "pln";
-                break;
-            case NOK:
-                currency = "nok";
-                break;
-            case JPY:
-                currency = "jpy";
-                break;
-            case DKK:
-                currency = "dkk";
-                break;
-            case CNY:
-                currency = "cny";
-                break;
-            case CAD:
-                currency = "cad";
-                break;
-            case AUD:
-                currency = "aud";
-                break;
-            case HUF:
-                currency = "huf";
-                break;
-            case CZK:
-                currency = "czk";
-                break;
-            case ISL:
-                currency = "ils";
-                break;
-            //default нам не потрібен, бо дані будемо брати з натискання кнопок
-        }
-        return "https://minfin.com.ua/ua/currency/banks/" + currency + "/";
-    }
-
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-        System.out.println(getURL(Currency.USD));
-        minFin.CurrencyParser(getURL(Currency.USD));
+        GetUrlCurrency getUrlCurrency = new GetUrlCurrency();
+        System.out.println(getUrlCurrency.getURL(Currency.USD));
+        minFin.CurrencyParser(getUrlCurrency.getURL(Currency.USD));
 
         //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
