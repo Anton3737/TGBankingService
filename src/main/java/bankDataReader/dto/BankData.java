@@ -1,4 +1,4 @@
-package bankDataReader;
+package bankDataReader.dto;
 
 public class BankData {
     private String name;
@@ -33,5 +33,15 @@ public class BankData {
 
     public void setPriceForSale(double priceForSale) {
         this.priceForSale = priceForSale;
+    }
+
+
+    @Override
+    public String toString() {
+        return "BankData{" +
+                "name='" + name + '\'' +
+                ", priceToBuy=" + priceToBuy +
+                ", priceForSale=" + priceForSale +
+                '}';
     }
 }

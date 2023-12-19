@@ -1,5 +1,6 @@
 package bankDataReader;
 
+import bankDataReader.dto.BankData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -31,14 +32,17 @@ public class MinFin {
 
         while (matcher.find()) {
             String dataTitle = matcher.group(1);
-            String dataCard = matcher.group(2);
+//            String dataCard = matcher.group(2);
             String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
 
-            double priceToBuy = extractPrice(dataTitle);
-            double priceForSale = extractPrice(dataCard);
+
+            double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)",""));
+            double priceForSale = extractPrice(dataTitle.replaceAll("/(.*)", ""));
 
             BankData bankData = new BankData(name, priceToBuy, priceForSale);
             bankDataList.add(bankData);
+//            System.out.println("Продаж " + bankData.getPriceForSale());
+//            System.out.println("купівля " + bankData.getPriceToBuy());
         }
 
         System.out.println("Collection size: " + bankDataList.size());
@@ -65,6 +69,7 @@ public class MinFin {
                 e.printStackTrace();
             }
         }
+//        System.out.println(price);
 
         return price;
     }
