@@ -1,5 +1,6 @@
-package bankDataReader;
+package bankDataReader.db;
 
+import bankDataReader.usersDBDTO.UsersDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -12,17 +13,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.lang.reflect.Type;
 
-public class DataBase implements AutoCloseable{
+public class DataBase extends User implements AutoCloseable{
     private static DataBase instance;
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
 
-    private static Map<String, Object> data;
+    protected static Map<Integer, UsersDTO> data;
     private DataBase() {
         try (Reader reader = new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/database.json")))) {
-            Type type = new TypeToken<Map<String, Object>>(){}.getType();
+            Type type = new TypeToken<Map<Integer, UsersDTO>>(){}.getType();
 
             DataBase.data = gson.fromJson(reader, type);
         } catch (Exception e) {
@@ -50,7 +51,7 @@ public class DataBase implements AutoCloseable{
      * Get data from database
      * @return Map<String, Object>
      */
-    public Map<String, Object> getJsonData() {
+    public Map<Integer, UsersDTO> getJsonData() {
         return DataBase.data;
     }
 
@@ -59,7 +60,7 @@ public class DataBase implements AutoCloseable{
      * @param data for saving
      * @throws IOException
      */
-    public void saveJsonData(Map<String, Object> data) throws IOException {
+    public void saveJsonData(Map<Integer, UsersDTO> data) throws IOException {
         String filePath = "src/main/resources/";
         String fileName = "database.json";
         try (FileWriter writer = new FileWriter(filePath+fileName)) {
