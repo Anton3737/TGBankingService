@@ -1,41 +1,53 @@
-package bankDataReader.dto;
+package bankDataReader.usersDBDTO;
+
+import bankDataReader.enums.Currency;
+
+import java.util.List;
+
 //Описовий клас для створення екземплярів класу для наших користувачів,
 // які будуть додаватись в БД під час підключення до боту
 public class UsersDTO {
-    private int ID;
-    private String name;
-    private String phone;
+    List<String> bankList;
+    List<Currency> currencyList;
+    int notificationTime;
+    int sumbols;
 
-    public UsersDTO() {
+    public UsersDTO(List<String> bankList, List<Currency> currencyList, int notificationTime, int sumbols) {
+        this.bankList = bankList;
+        this.currencyList = currencyList;
+        this.notificationTime = notificationTime;
+        this.sumbols = sumbols;
     }
 
-    public UsersDTO(int ID, String name, String phone) {
-        this.ID = ID;
-        this.name = name;
-        this.phone = phone;
+    public List<String> getBank() {
+        return bankList;
     }
 
-    public int getID() {
-        return ID;
+    public void setBank(List<String> bank) {
+        this.bankList = bank;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public List<Currency> getCurrency() {
+        return currencyList;
     }
 
-    public String getName() {
-        return name;
+    public void setCurrency(List<Currency> currency) {
+        this.currencyList = currency;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getNotificationTime() {
+        return notificationTime;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setNotificationTime(int notificationTime) {
+        this.notificationTime = notificationTime;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public int getSumbols() {
+        return sumbols;
+    }
+
+    public void setSumbols(int sumbols) {
+        this.sumbols = sumbols;
     }
 }
