@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class Banks {
 
-    static void namesOfBanks(AbsSender absSender, Chat chat) {
+    public static void namesOfBanks(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();
         String titleMessage = "Оберіть банк";
         sendMessage.setText(titleMessage);
@@ -32,6 +32,5 @@ public class Banks {
             e.printStackTrace();
             System.out.println("Something wrong with sending settings message :(");
         }
-
     }
 }

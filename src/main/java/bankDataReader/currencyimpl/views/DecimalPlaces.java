@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class DecimalPlaces {
 
-    static void decimalPlacesMethod(AbsSender absSender, Chat chat) {
+    public static void decimalPlacesMethod(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();
         String titleMessage = "Оберіть кількість символів після коми";
         sendMessage.setText(titleMessage);

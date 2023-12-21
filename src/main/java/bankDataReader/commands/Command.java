@@ -12,8 +12,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Command extends BotCommand {
 
@@ -41,20 +43,21 @@ public class Command extends BotCommand {
             System.out.println("Something wrong :(");
         }
 
-        if (strings.length > 0) {
-            String command = strings[0];
-            switch (command) {
-                case "Отримати інфо":
-                    Info.getInfoMethod(absSender, chat);
-                    break;
-                case "Налаштування":
-                    // Виклик методу з іншого класу
-                    Settings.displaySettingsMethod(absSender, chat);
-                    break;
-                default:
-                    // обробка невідомої команди
-                    break;
+//        String buttonTextInfo = inlineKeyboardMarkup.getKeyboard().get(0).get(0).getText(); // "Отримати інфо"
+//        String buttonTextSettings = inlineKeyboardMarkup.getKeyboard().get(0).get(1).getText(); // "Налаштування"
+
+        List<List<InlineKeyboardButton>> keyboard = inlineKeyboardMarkup.getKeyboard();
+        if (!keyboard.isEmpty() && keyboard.get(0).size() == 2) {
+            String buttonTextInfo = keyboard.get(0).get(0).getText();
+            String buttonTextSettings = keyboard.get(0).get(1).getText();
+
+            if ("Отримати інфо".equals(buttonTextInfo)) {
+                Info.getInfoMethod(absSender, chat);
+            } else if ("Налаштування".equals(buttonTextSettings)) {
+                Settings.displaySettingsMethod(absSender, chat);
             }
         }
     }
 }
+
+

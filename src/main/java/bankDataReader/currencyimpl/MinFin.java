@@ -16,9 +16,6 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    // винести маппер
-
-
     public List<BankData> сurrencyParser(String url) throws IOException {
         List<BankData> bankDataList = new ArrayList<>();
 
@@ -38,8 +35,7 @@ public class MinFin {
 //            String dataCard = matcher.group(2);
             String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
 
-
-            double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)",""));
+            double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)", ""));
             double priceForSale = extractPrice(dataTitle.replaceAll("/(.*)", ""));
 
             BankData bankData = new BankData(name, priceToBuy, priceForSale);
@@ -78,7 +74,7 @@ public class MinFin {
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-        minFin.сurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
+//        minFin.сurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
@@ -95,6 +91,4 @@ public class MinFin {
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/ils/");  // Курс ізраїльського шекеля в банках України
 
     }
-
-
 }

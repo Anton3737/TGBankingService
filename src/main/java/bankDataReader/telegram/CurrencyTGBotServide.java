@@ -1,14 +1,17 @@
 package bankDataReader.telegram;
 
 import bankDataReader.commands.Command;
-import bankDataReader.currencyimpl.views.Settings;
+import bankDataReader.currencyimpl.views.*;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
+import java.util.List;
+import java.util.stream.Collectors;
 
+public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
     public CurrencyTGBotServide() {
 
@@ -31,10 +34,56 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 //        System.out.println();
 //    }
 
-
     @Override
     public void processNonCommandUpdate(Update update) {
-        
+        if (update.hasCallbackQuery()) {
+            CallbackQuery callbackQuery = update.getCallbackQuery();
+            String data = callbackQuery.getData();
+
+            // різні значення data (текст кнопки)
+
+            //
+            if ("Отримати інфо".equals(data)) {
+                Info.getInfoMethod(this, callbackQuery.getMessage().getChat());
+            } else if ("Налаштування".equals(data)) {
+                Settings.displaySettingsMethod(this, callbackQuery.getMessage().getChat());
+            }
+
+
+            //  Banks
+            if ("ПриватБанк".equals(data)) {
+
+            } else if ("Монобанк".equals(data)) {
+
+            } else if ("Ощадбанк".equals(data)) {
+
+            }
+
+
+            // Settings
+            if ("Банк".equals(data)) {
+                Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
+            } else if ("Валюта".equals(data)) {
+                Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
+            } else if ("Кращі пропозиції".equals(data)) {
+                BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
+            } else if ("Час сповіщень".equals(data)) {
+                NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
+            }
+
+            // DecimalPlaces
+            if ("2".equals(data)) {
+
+            } else if ("3".equals(data)) {
+
+            } else if ("4".equals(data)) {
+
+            }
+
+
+
+
+        }
     }
 
 }

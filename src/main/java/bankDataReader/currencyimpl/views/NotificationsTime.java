@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class NotificationsTime {
 
-    static void setNotificationsTime(AbsSender absSender, Chat chat) {
+   public static void setNotificationsTime(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();
         String titleMessage = "Оберіть час сповіщень";
         sendMessage.setText(titleMessage);

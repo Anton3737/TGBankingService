@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class Currency {
 
-    static void chooseCurrency(AbsSender absSender, Chat chat){
+    public static void chooseCurrency(AbsSender absSender, Chat chat){
         SendMessage sendMessage = new SendMessage();
         String titleMessage = "Оберіть валюту";
         sendMessage.setText(titleMessage);
