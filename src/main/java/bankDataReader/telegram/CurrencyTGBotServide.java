@@ -81,8 +81,6 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
 
-
-
         }
     }
 
