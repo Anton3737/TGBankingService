@@ -1,6 +1,6 @@
 package bankDataReader.currencyimpl;
 
-import bankDataReader.Currency;
+import bankDataReader.enums.Currency;
 
 public class GetUrlCurrency {
     public static String getURL(Currency ccy) {

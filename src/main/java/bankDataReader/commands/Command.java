@@ -17,16 +17,13 @@ import java.util.Collections;
 
 public class Command extends BotCommand {
 
-
-    public Command(String commandIdentifier, String description) {
+    public Command() {
         super("start", "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют");
     }
-
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         SendMessage sendMessage = new SendMessage();
-        // Віконечко 3
         String firstMsg = "Оберіть пункти з меню";
         sendMessage.setText(firstMsg);
         sendMessage.setChatId(chat.getId());
@@ -40,18 +37,24 @@ public class Command extends BotCommand {
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            System.out.println("Something wrong :(");
         }
 
-        switch (strings.toString()) {
-            case "Отримати інфо" -> {
-
-            }
-
-            case "Налаштування" -> {
-
+        if (strings.length > 0) {
+            String command = strings[0];
+            switch (command) {
+                case "Отримати інфо":
+                    Info.getInfoMethod(absSender, chat);
+                    break;
+                case "Налаштування":
+                    // Виклик методу з іншого класу
+                    Settings.displaySettingsMethod(absSender, chat);
+                    break;
+                default:
+                    // обробка невідомої команди
+                    break;
             }
         }
-
     }
 }
