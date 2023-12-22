@@ -28,4 +28,17 @@ public class User {
 
         return user;
     }
+
+    public void updateUserBanks(int userId, List<String> selectedBanks) {
+        try (DataBase database = DataBase.getInstance()) {
+            UsersDTO user = database.getUser(userId);
+
+            if (user != null) {
+                user.setBank(selectedBanks);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
