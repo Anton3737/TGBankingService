@@ -1,5 +1,6 @@
-package bankDataReader;
+package bankDataReader.currencyimpl;
 
+import bankDataReader.dto.BankData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    public List<BankData> CurrencyParser(String url) throws IOException {
+    public List<BankData> сurrencyParser(String url) throws IOException {
         List<BankData> bankDataList = new ArrayList<>();
 
         Connection connection = Jsoup.connect(url);
@@ -31,16 +32,16 @@ public class MinFin {
 
         while (matcher.find()) {
             String dataTitle = matcher.group(1);
+//            String dataCard = matcher.group(2);
             String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
 
-            String[] prices = dataTitle.split("/");
-
-
-            double priceToBuy = extractPrice(prices[0]);
-            double priceForSale = extractPrice(prices[1]);
+            double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)", ""));
+            double priceForSale = extractPrice(dataTitle.replaceAll("/(.*)", ""));
 
             BankData bankData = new BankData(name, priceToBuy, priceForSale);
             bankDataList.add(bankData);
+//            System.out.println("Продаж " + bankData.getPriceForSale());
+//            System.out.println("купівля " + bankData.getPriceToBuy());
         }
 
         System.out.println("Collection size: " + bankDataList.size());
@@ -50,7 +51,6 @@ public class MinFin {
 
         return bankDataList;
     }
-
 
     private double extractPrice(String data) {
         String pricePattern = "\\d+\\.\\d+";
@@ -68,13 +68,13 @@ public class MinFin {
                 e.printStackTrace();
             }
         }
-
+//        System.out.println(price);
         return price;
     }
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();
-        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
+//        minFin.сurrencyParser("https://minfin.com.ua/ua/currency/banks/usd/");
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/eur/");  // Курс євро в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/gbp/");  // Курс англійського фунта стерлінгів в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/chf/");  // Курс швейцарського франка в банках України
@@ -88,9 +88,7 @@ public class MinFin {
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/aud/");  // Курс австралійського долара в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/huf/");  // Курс угорського форінта в банках України
 //        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/czk/");  // Курс чеської крони в банках України
-//     minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/ils/");  // Курс ізраїльського шекеля в банках України
+//        minFin.CurrencyParser("https://minfin.com.ua/ua/currency/banks/ils/");  // Курс ізраїльського шекеля в банках України
 
     }
-
-
 }
