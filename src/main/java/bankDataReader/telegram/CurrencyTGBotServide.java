@@ -58,17 +58,14 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
 
             //  Banks
-//            if ("ПриватБанк".equals(data)) {
-//
-//            } else if ("Монобанк".equals(data)) {
-//
-//            } else if ("Ощадбанк".equals(data)) {
-//
-//            }
+            if ("ПриватБанк".equals(data)) {
 
-            if ("ПриватБанк".equals(data) || "Монобанк".equals(data) || "Ощадбанк".equals(data)) {
-                Banks.processBankSelection(callbackQuery, Math.toIntExact(callbackQuery.getFrom().getId()));
+            } else if ("Монобанк".equals(data)) {
+
+            } else if ("Ощадбанк".equals(data)) {
+
             }
+
 
 
             // Settings
