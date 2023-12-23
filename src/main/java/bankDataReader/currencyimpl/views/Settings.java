@@ -1,5 +1,7 @@
 package bankDataReader.currencyimpl.views;
 
+import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.enums.Currency;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -8,8 +10,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Settings {
 
@@ -23,14 +27,12 @@ public class Settings {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton banks = InlineKeyboardButton.builder().text("Банк").callbackData("Банк").build();
-        InlineKeyboardButton currency = InlineKeyboardButton.builder().text("Валюта").callbackData("Валюта").build();
-        InlineKeyboardButton betterOffers = InlineKeyboardButton.builder().text("Кращі пропозиції").callbackData("Кращі пропозиції").build();
-        InlineKeyboardButton notificationsTime = InlineKeyboardButton.builder().text("Час сповіщень").callbackData("Час сповіщень").build();
+        PutMarks<String> marks = new PutMarks<>();
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(banks, currency, betterOffers, notificationsTime))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+        sendMessage.setReplyMarkup(marks.addButtons(
+                List.of("Банк", "Валюта", "Кращі пропозиції", "Час сповіщень"),
+                new ArrayList<>()
+        ));
 
         try {
             absSender.execute(sendMessage);

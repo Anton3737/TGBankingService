@@ -1,12 +1,10 @@
 package databade;
 
 import bankDataReader.db.DataBase;
-import bankDataReader.usersDBDTO.UsersDTO;
+import bankDataReader.dto.UsersDTO;
 import org.junit.Test;
 
 public class DataBaseTest {
-
-
 
     @Test
     public void getUserTest(){

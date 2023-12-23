@@ -2,21 +2,9 @@ package bankDataReader.telegram;
 
 import bankDataReader.commands.Command;
 import bankDataReader.currencyimpl.views.*;
-import bankDataReader.db.User;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
@@ -72,7 +60,7 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             if ("Банк".equals(data)) {
                 Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
             } else if ("Валюта".equals(data)) {
-                Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
+                CurrencyPage.chooseCurrency(this, callbackQuery.getMessage().getChat());
             } else if ("Кращі пропозиції".equals(data)) {
                 BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
             } else if ("Час сповіщень".equals(data)) {

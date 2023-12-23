@@ -1,7 +1,8 @@
 package bankDataReader.db;
 
+import bankDataReader.enums.BanksName;
 import bankDataReader.enums.Currency;
-import bankDataReader.usersDBDTO.UsersDTO;
+import bankDataReader.dto.UsersDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class User {
         } else {
             // Set default settings
             user = new UsersDTO(
-                    List.of("monobank"),
+                    List.of(BanksName.MONOBANK.toString()),
                     List.of(Currency.USD),
                     12,
                     2

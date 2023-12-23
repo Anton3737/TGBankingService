@@ -1,7 +1,10 @@
 package bankDataReader.currencyimpl.views;
 
+import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
 import bankDataReader.dto.BankData;
+import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -46,18 +49,25 @@ public class Banks {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton Private = InlineKeyboardButton.builder().text("ПриватБанк").callbackData("ПриватБанк").build();
-        InlineKeyboardButton Mono = InlineKeyboardButton.builder().text("Монобанк").callbackData("Монобанк").build();
-        InlineKeyboardButton Oshchad = InlineKeyboardButton.builder().text("Ощадбанк").callbackData("Ощадбанк").build();
+        try (DataBase db = DataBase.getInstance()){
+            UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
+            List<String> banks = userInfo.getBank();
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(Private, Mono, Oshchad))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+            PutMarks<BanksName> marks = new PutMarks<>();
+
+            sendMessage.setReplyMarkup(marks.addButtons(
+                    List.of(BanksName.PRIVATBANK, BanksName.MONOBANK, BanksName.OSHCHADBANK),
+                    banks
+            ));
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
     }

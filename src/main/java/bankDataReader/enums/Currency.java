@@ -15,5 +15,10 @@ public enum Currency {
     AUD,
     HUF,
     CZK,
-    ISL
+    ISL;
+
+    @Override
+    public String toString() {
+        return this.name();
+    }
 }

@@ -1,4 +1,4 @@
-package bankDataReader.usersDBDTO;
+package bankDataReader.dto;
 
 import bankDataReader.enums.Currency;
 
