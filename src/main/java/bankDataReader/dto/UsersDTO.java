@@ -1,6 +1,6 @@
-package bankDataReader.usersDBDTO;
+package bankDataReader.dto;
 
-import bankDataReader.enums.Currency;
+import bankDataReader.enums.CurrencyEnum;
 
 import java.util.List;
 
@@ -8,13 +8,13 @@ import java.util.List;
 // які будуть додаватись в БД під час підключення до боту
 public class UsersDTO {
     List<String> bankList;
-    List<Currency> currencyList;
+    List<CurrencyEnum> currencyEnumList;
     int notificationTime;
     int sumbols;
 
-    public UsersDTO(List<String> bankList, List<Currency> currencyList, int notificationTime, int sumbols) {
+    public UsersDTO(List<String> bankList, List<CurrencyEnum> currencyEnumList, int notificationTime, int sumbols) {
         this.bankList = bankList;
-        this.currencyList = currencyList;
+        this.currencyEnumList = currencyEnumList;
         this.notificationTime = notificationTime;
         this.sumbols = sumbols;
     }
@@ -27,12 +27,12 @@ public class UsersDTO {
         this.bankList = bank;
     }
 
-    public List<Currency> getCurrency() {
-        return currencyList;
+    public List<CurrencyEnum> getCurrency() {
+        return currencyEnumList;
     }
 
-    public void setCurrency(List<Currency> currency) {
-        this.currencyList = currency;
+    public void setCurrency(List<CurrencyEnum> currencyEnum) {
+        this.currencyEnumList = currencyEnum;
     }
 
     public int getNotificationTime() {

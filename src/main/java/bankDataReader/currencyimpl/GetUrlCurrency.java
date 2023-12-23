@@ -1,14 +1,14 @@
 package bankDataReader.currencyimpl;
 
-import bankDataReader.enums.Currency;
+import bankDataReader.enums.CurrencyEnum;
 
 public class GetUrlCurrency {
     /**
-     * getUR вхідні дані - Currency енам, вихідні - String URL
+     * getUR вхідні дані - CurrencyEnum енам, вихідні - String URL
      * @param ccy
      * @return
      */
-    public String getURL(Currency ccy) {
+    public String getURL(CurrencyEnum ccy) {
         String currency = ccy.name().toLowerCase();
 
         return "https://minfin.com.ua/ua/currency/banks/" + currency + "/";

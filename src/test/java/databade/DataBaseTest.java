@@ -1,9 +1,9 @@
 package databade;
 
 import bankDataReader.db.DataBase;
+import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
-import bankDataReader.enums.Currency;
-import bankDataReader.usersDBDTO.UsersDTO;
+import bankDataReader.enums.CurrencyEnum;
 import org.junit.Test;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class DataBaseTest {
     public void getUserCurrency() {
         try (DataBase db = DataBase.getInstance()) {
             // Testing data
-            String data = Currency.USD.toString();
+            String data = CurrencyEnum.USD.toString();
             int userId = 1;
 
             // Use testing data

@@ -1,11 +1,11 @@
 package bankDataReader.currencyimpl.currencyInterface;
 
-import bankDataReader.enums.Currency;
+import bankDataReader.enums.CurrencyEnum;
 
 import java.io.IOException;
 
 public interface CurrencyService {
 
-    double getRate(Currency cc) throws IOException;
+    double getRate(CurrencyEnum cc) throws IOException;
 
 }
