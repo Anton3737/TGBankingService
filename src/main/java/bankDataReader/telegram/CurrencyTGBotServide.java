@@ -2,7 +2,9 @@ package bankDataReader.telegram;
 
 import bankDataReader.commands.Command;
 import bankDataReader.currencyimpl.views.*;
+import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
+import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
@@ -58,14 +60,28 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
 
             //  Banks
-            if ("ПриватБанк".equals(data)) {
+            try (DataBase db = DataBase.getInstance()) {
+                // Testing data
+                long userId = callbackQuery.getMessage().getChat().getId();
 
-            } else if ("Монобанк".equals(data)) {
+                // Use testing data
+                bankDataReader.usersDBDTO.UsersDTO userInfo = db.getUser((int) userId);
+                List<String> banks = userInfo.getBank();
 
-            } else if ("Ощадбанк".equals(data)) {
+                // Check choice
+                if (BanksName.PRIVATBANK.toString().equals(data)) {
+                    Banks.oneChoice(BanksName.PRIVATBANK.toString(), banks);
 
+                } else if (BanksName.MONOBANK.toString().equals(data)) {
+                    Banks.oneChoice(BanksName.MONOBANK.toString(), banks);
+
+                } else if (BanksName.OSHCHADBANK.toString().equals(data)) {
+                    Banks.oneChoice(BanksName.OSHCHADBANK.toString(), banks);
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-
 
 
             // Settings
@@ -77,6 +93,8 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
             } else if ("Час сповіщень".equals(data)) {
                 NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
+            } else if ("Кількість знаків після коми".equals(data)) {
+                DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
             }
 
             // DecimalPlaces
@@ -91,5 +109,5 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
         }
     }
-    
+
 }

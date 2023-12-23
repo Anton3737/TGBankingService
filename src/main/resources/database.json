@@ -1,7 +1,39 @@
 {
   "0": {
     "bankList": [
-      "monobank"
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 12,
+    "sumbols": 2
+  },
+  "1": {
+    "bankList": [
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 12,
+    "sumbols": 2
+  },
+  "538832410": {
+    "bankList": [
+      "ОЩАДБАНК",
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 12,
+    "sumbols": 2
+  },
+  "810071761": {
+    "bankList": [
+      "ОЩАДБАНК",
+      "ПРИВАТБАНК"
     ],
     "currencyList": [
       "USD"
