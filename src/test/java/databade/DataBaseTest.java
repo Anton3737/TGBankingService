@@ -5,6 +5,9 @@ import bankDataReader.usersDBDTO.UsersDTO;
 import org.junit.Test;
 
 public class DataBaseTest {
+
+
+
     @Test
     public void getUserTest(){
         try (DataBase db = DataBase.getInstance()){

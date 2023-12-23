@@ -33,8 +33,11 @@ public class Banks {
     }
 
 
+    public static void bankChoiser(String namebank , List<BankData> dataList){
 
 
+
+    }
 
 
     public static void namesOfBanks(AbsSender absSender, Chat chat) {
