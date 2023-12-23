@@ -7,16 +7,16 @@ public class Checkmark {
      * @param buttonName
      * @return
      */
-    public String addCheck(String buttonName){
-        if(!buttonName.startsWith("✔")) {
-            buttonName = "✔" + buttonName;
+    public static String addCheck(String buttonName){
+        if(!buttonName.endsWith("✔")) {
+            buttonName = buttonName + "✔";
         }
         return buttonName;
     }
 
-    public String deleteCheck(String buttonName) {
+    public static String deleteCheck(String buttonName) {
         String res = "";
-        if(buttonName.startsWith("✔")) {
+        if(buttonName.endsWith("✔")) {
             res = buttonName.replaceAll("✔","");
         }
         return res;
