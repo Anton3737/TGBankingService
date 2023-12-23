@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Banks {
 
-    public void processBankSelection(CallbackQuery callbackQuery, int userId) {
+    public static void processBankSelection(CallbackQuery callbackQuery, int userId) {
         User userDb = new User();
 
         String selectedBank = callbackQuery.getData();
@@ -32,9 +32,6 @@ public class Banks {
 
 
     }
-
-
-
 
 
     public static void namesOfBanks(AbsSender absSender, Chat chat) {
@@ -58,4 +55,5 @@ public class Banks {
             System.out.println("Something wrong with sending settings message :(");
         }
     }
+
 }

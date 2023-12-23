@@ -2,12 +2,19 @@ package bankDataReader.telegram;
 
 import bankDataReader.commands.Command;
 import bankDataReader.currencyimpl.views.*;
+import bankDataReader.db.User;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,12 +58,16 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
 
             //  Banks
-            if ("ПриватБанк".equals(data)) {
+//            if ("ПриватБанк".equals(data)) {
+//
+//            } else if ("Монобанк".equals(data)) {
+//
+//            } else if ("Ощадбанк".equals(data)) {
+//
+//            }
 
-            } else if ("Монобанк".equals(data)) {
-
-            } else if ("Ощадбанк".equals(data)) {
-
+            if ("ПриватБанк".equals(data) || "Монобанк".equals(data) || "Ощадбанк".equals(data)) {
+                Banks.processBankSelection(callbackQuery, Math.toIntExact(callbackQuery.getFrom().getId()));
             }
 
 
@@ -83,5 +94,5 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
         }
     }
-
+    
 }
