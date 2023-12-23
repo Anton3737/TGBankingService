@@ -1,17 +1,17 @@
 package bankDataReader.currencyimpl.views;
 
 import bankDataReader.db.User;
+import bankDataReader.dto.BankData;
+import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import bankDataReader.usersDBDTO.UsersDTO;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.awt.datatransfer.Clipboard;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -30,8 +30,11 @@ public class Banks {
         // оновлення списку банків для користувача в базі даних в классі юзер
         userDb.updateUserBanks(userId, selectedBanks);
 
-
     }
+
+
+
+
 
 
     public static void namesOfBanks(AbsSender absSender, Chat chat) {
