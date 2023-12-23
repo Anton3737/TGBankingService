@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 
 public class DataBase extends User implements AutoCloseable{
     private static DataBase instance;
+    private static int initialHash;
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
@@ -26,6 +27,7 @@ public class DataBase extends User implements AutoCloseable{
             Type type = new TypeToken<Map<Integer, UsersDTO>>(){}.getType();
 
             DataBase.data = gson.fromJson(reader, type);
+            initialHash = data.hashCode();
         } catch (Exception e) {
             e.printStackTrace(System.out);
             DataBase.data = null;
@@ -73,6 +75,9 @@ public class DataBase extends User implements AutoCloseable{
      */
     @Override
     public void close() throws Exception {
-        this.saveJsonData(data);
+        if (data.hashCode() != initialHash) {
+            this.saveJsonData(data);
+            DataBase.initialHash = data.hashCode();
+        }
     }
 }

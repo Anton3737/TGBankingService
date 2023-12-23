@@ -6,32 +6,32 @@ import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.Currency;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class DecimalPlaces {
+public class CurrencyPage {
 
-    public static void decimalPlacesMethod(AbsSender absSender, Chat chat) {
+    public static void chooseCurrency(AbsSender absSender, Chat chat){
         SendMessage sendMessage = new SendMessage();
-        String titleMessage = "Оберіть кількість символів після коми";
+        String titleMessage = "Оберіть валюту";
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
+
         try (DataBase db = DataBase.getInstance()){
             UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
-            int sumbols = userInfo.getSumbols();
+            List<Currency> banks = userInfo.getCurrency();
 
-            PutMarks<String> sumbolsAftercoma = new PutMarks<>();
+            PutMarks<Currency> сurrency = new PutMarks<>();
 
-            sendMessage.setReplyMarkup(sumbolsAftercoma.addButtons(
-                    List.of("2", "3", "4"),
-                    List.of(String.valueOf(sumbols))
+            sendMessage.setReplyMarkup(сurrency.addButtons(
+                    List.of(Currency.USD, Currency.EUR, Currency.PLN, Currency.GBP,
+                            Currency.CHF, Currency.CZK),
+                    banks.stream()
+                            .map(Object::toString)
+                            .toList()
             ));
 
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class DecimalPlaces {
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace();
             System.out.println("Something wrong with sending settings message :(");
         }
     }
