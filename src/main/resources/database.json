@@ -11,12 +11,15 @@
   },
   "538832410": {
     "bankList": [
-      "ОЩАДБАНК",
-      "ПРИВАТБАНК",
       "MONOBANK"
     ],
     "currencyList": [
-      "GBP"
+      "USD",
+      "EUR",
+      "PLN",
+      "GBP",
+      "CHF",
+      "CZK"
     ],
     "notificationTime": 19,
     "symbols": 2

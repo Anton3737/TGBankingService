@@ -48,4 +48,5 @@ public class UsersDTO {
     public void setSymbols(int symbols) {
         this.symbols = symbols;
     }
+
 }
