@@ -1,6 +1,6 @@
-package bankDataReader.db;
+package com.example.TGBankingService.bankDataReader.db;
 
-import bankDataReader.dto.UsersDTO;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

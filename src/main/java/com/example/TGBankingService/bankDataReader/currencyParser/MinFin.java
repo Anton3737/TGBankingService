@@ -1,8 +1,7 @@
-package bankDataReader.currencyimpl;
+package com.example.TGBankingService.bankDataReader.currencyParser;
 
-import bankDataReader.dto.BankData;
-import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
+import com.example.TGBankingService.bankDataReader.dto.BankData;
+import com.example.TGBankingService.bankDataReader.enums.BanksName;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -47,7 +46,6 @@ public class MinFin {
                 if (bankData.getName().equals(BanksName.MONOBANK.toString())) {
                     for (BankData data : bankDataList) {
                         if (data.getName().equals(BanksName.UNIVERSALBANK.toString())) {
-//                            data.setName(BanksName.MONOBANK.toString());
                             bankData.setPriceToBuy(data.getPriceToBuy());
                             bankData.setPriceForSale(data.getPriceForSale());
                             bankDataList.add(bankData);
@@ -63,7 +61,7 @@ public class MinFin {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataList);
+        objectMapper.writeValue(new File("src/main/resources/BankData.json"), bankDataList);
 
         return bankDataList;
     }
@@ -86,5 +84,4 @@ public class MinFin {
         }
         return price;
     }
-
 }

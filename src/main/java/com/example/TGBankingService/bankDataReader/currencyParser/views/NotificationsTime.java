@@ -1,30 +1,28 @@
-package bankDataReader.currencyimpl.views;
+package com.example.TGBankingService.bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
-import bankDataReader.db.DataBase;
-import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
+import com.example.TGBankingService.bankDataReader.currencyParser.markingSymbolyc.PutMarks;
+import com.example.TGBankingService.bankDataReader.db.DataBase;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class NotificationsTime {
 
     public static String timer() {
-//
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         return dtf.format(LocalDateTime.now());
+    }
 
+    public static String timeToday() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        return localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm"));
     }
 
     public static void setNotificationsTime(AbsSender absSender, Chat chat) {
@@ -57,6 +55,6 @@ public class NotificationsTime {
     }
 
     public static void main(String[] args) {
-        System.out.println(timer());
+        System.out.println(timeToday());
     }
 }

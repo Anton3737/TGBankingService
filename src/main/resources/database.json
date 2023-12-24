@@ -16,12 +16,7 @@
       "MONOBANK"
     ],
     "currencyList": [
-      "USD",
-      "EUR",
-      "PLN",
-      "GBP",
-      "CHF",
-      "CZK"
+      "GBP"
     ],
     "notificationTime": 19,
     "symbols": 2

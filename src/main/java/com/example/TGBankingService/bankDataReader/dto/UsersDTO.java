@@ -1,4 +1,4 @@
-package bankDataReader.dto;
+package com.example.TGBankingService.bankDataReader.dto;
 
 import java.util.List;
 

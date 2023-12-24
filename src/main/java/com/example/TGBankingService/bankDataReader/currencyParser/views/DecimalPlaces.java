@@ -1,8 +1,8 @@
-package bankDataReader.currencyimpl.views;
+package com.example.TGBankingService.bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
-import bankDataReader.db.DataBase;
-import bankDataReader.dto.UsersDTO;
+import com.example.TGBankingService.bankDataReader.currencyParser.markingSymbolyc.PutMarks;
+import com.example.TGBankingService.bankDataReader.db.DataBase;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.bots.AbsSender;

@@ -1,4 +1,4 @@
-package bankDataReader.dto;
+package com.example.TGBankingService.bankDataReader.dto;
 
 public class BankData {
     private String currencyCode;

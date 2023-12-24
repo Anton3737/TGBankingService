@@ -1,8 +1,8 @@
-package bankDataReader.db;
+package com.example.TGBankingService.bankDataReader.db;
 
-import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
+import com.example.TGBankingService.bankDataReader.enums.BanksName;
+import com.example.TGBankingService.bankDataReader.enums.CurrencyEnum;
 
 import java.util.ArrayList;
 import java.util.List;

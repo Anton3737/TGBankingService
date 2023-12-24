@@ -1,11 +1,9 @@
 package com.example.TGBankingService.Banks;
 
-import bankDataReader.currencyimpl.MinFin;
-import bankDataReader.db.DataBase;
-import bankDataReader.dto.BankData;
-import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
+import com.example.TGBankingService.bankDataReader.currencyParser.MinFin;
+import com.example.TGBankingService.bankDataReader.db.DataBase;
+import com.example.TGBankingService.bankDataReader.dto.BankData;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
 import org.junit.Test;
 
 import java.util.ArrayList;

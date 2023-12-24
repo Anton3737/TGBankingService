@@ -1,13 +1,12 @@
 package databade;
 
-import bankDataReader.currencyimpl.views.Currency;
-import bankDataReader.db.DataBase;
-import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
+import com.example.TGBankingService.bankDataReader.currencyParser.views.Currency;
+import com.example.TGBankingService.bankDataReader.db.DataBase;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
+import com.example.TGBankingService.bankDataReader.enums.BanksName;
+import com.example.TGBankingService.bankDataReader.enums.CurrencyEnum;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseTest {

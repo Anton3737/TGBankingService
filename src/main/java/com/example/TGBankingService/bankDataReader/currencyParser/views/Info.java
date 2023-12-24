@@ -1,15 +1,12 @@
-package bankDataReader.currencyimpl.views;
+package com.example.TGBankingService.bankDataReader.currencyParser.views;
 
-import bankDataReader.telegram.TelegramPrettyPrinter;
+import com.example.TGBankingService.bankDataReader.telegram.TelegramPrettyPrinter;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Info {
-
-
-    // Чекаємо BD
 
     public static void getInfoMethod(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();

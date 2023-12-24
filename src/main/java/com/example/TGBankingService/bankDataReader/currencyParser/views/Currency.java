@@ -1,21 +1,16 @@
-package bankDataReader.currencyimpl.views;
+package com.example.TGBankingService.bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
-import bankDataReader.db.DataBase;
-import bankDataReader.db.User;
-import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
+import com.example.TGBankingService.bankDataReader.currencyParser.markingSymbolyc.PutMarks;
+import com.example.TGBankingService.bankDataReader.db.DataBase;
+import com.example.TGBankingService.bankDataReader.db.User;
+import com.example.TGBankingService.bankDataReader.dto.UsersDTO;
+import com.example.TGBankingService.bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Currency {
@@ -28,9 +23,7 @@ public class Currency {
         List<String> selectedCurrencyList = userDb.getUser(userId).getCurrency();
 
         selectedCurrencyList.add(selectedCurrency);
-
-        // оновлення списку банків для користувача в базі даних в классі юзер
-
+        
         userDb.updateUserCurrency(userId, selectedCurrencyList);
 
     }

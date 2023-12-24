@@ -1,4 +1,4 @@
-package bankDataReader.telegram;
+package com.example.TGBankingService.bankDataReader.telegram;
 
 public class LoginConstants {
 

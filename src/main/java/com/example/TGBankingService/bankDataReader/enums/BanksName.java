@@ -1,4 +1,4 @@
-package bankDataReader.enums;
+package com.example.TGBankingService.bankDataReader.enums;
 
 public enum BanksName {
 
