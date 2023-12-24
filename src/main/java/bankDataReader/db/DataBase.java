@@ -76,9 +76,10 @@ public class DataBase extends User implements AutoCloseable{
      */
     @Override
     public void close() throws IOException {
-        if (data.hashCode() != initialHash) {
-            this.saveJsonData(data);
-            initialHash = data.hashCode();
-        }
+//        if (data.hashCode() != initialHash) {
+//
+//            initialHash = data.hashCode();
+//        }
+        this.saveJsonData(data);
     }
 }
