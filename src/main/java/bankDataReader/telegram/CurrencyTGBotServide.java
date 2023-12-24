@@ -73,12 +73,14 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 // Check choice
                 if (BanksName.PRIVATBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.PRIVATBANK.toString(), banks);
-
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
                 } else if (BanksName.MONOBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.MONOBANK.toString(), banks);
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
 
                 } else if (BanksName.OSHCHADBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.OSHCHADBANK.toString(), banks);
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
                 }
 
             } catch (Exception e) {
@@ -98,16 +100,22 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 if (currencyList != null) {
                     if (CurrencyEnum.USD.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.EUR.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.PLZ.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.GBP.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.CHF.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.CZK.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.CZK.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     }
                 }
             } catch (Exception e) {
@@ -131,6 +139,7 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             // DecimalPlaces
             if ("2".equals(data)||"3".equals(data)||"4".equals(data)) {
                 DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
+
             }
 
         }

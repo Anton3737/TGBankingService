@@ -7,7 +7,7 @@
       "USD"
     ],
     "notificationTime": 12,
-    "sumbols": 2
+    "symbols": 0
   },
   "538832410": {
     "bankList": [
@@ -17,6 +17,17 @@
       "USD"
     ],
     "notificationTime": 12,
-    "sumbols": 2
+    "symbols": 0
+  },
+  "1": {
+    "bankList": [
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD",
+      "CHF"
+    ],
+    "notificationTime": 12,
+    "symbols": 2
   }
 }

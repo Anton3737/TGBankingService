@@ -3,20 +3,14 @@ package bankDataReader.currencyimpl.views;
 import bankDataReader.currencyimpl.currencyInterface.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
-import bankDataReader.dto.BankData;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Banks {

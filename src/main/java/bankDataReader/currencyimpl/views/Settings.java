@@ -25,8 +25,8 @@ public class Settings {
         sendMessage.setChatId(chat.getId());
 
         PutMarks<String> putClass = new PutMarks<>();
-        sendMessage.setReplyMarkup(putClass.addButtons(List.of("Банки",
-                "Валюти",
+        sendMessage.setReplyMarkup(putClass.addButtons(List.of("Банк",
+                "Валюта",
                 "Кількість знаків після коми",
                 "Час сповіщень"), new ArrayList<>()));
 
