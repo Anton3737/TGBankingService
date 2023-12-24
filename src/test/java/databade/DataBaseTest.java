@@ -43,7 +43,7 @@ public class DataBaseTest {
                 oneChoice(BanksName.OSHCHADBANK.toString(), banks);
             }
 
-            System.out.println(userInfo.getCurrency());
+            System.out.println(db.getJsonData());
 
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -1,11 +1,8 @@
 {
-  "538832410": {
-    "bankList": [
-      "ПРИВАТБАНК"
-    ],
+  "0": {
+    "bankList": [],
     "currencyList": [
-      "USD",
-      "GBP"
+      "USD"
     ],
     "notificationTime": 12,
     "sumbols": 2

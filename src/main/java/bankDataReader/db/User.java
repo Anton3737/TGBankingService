@@ -4,30 +4,26 @@ import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 import bankDataReader.enums.CurrencyEnum;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class User {
 
     public UsersDTO getUser(int userId) {
-        Map<Integer, UsersDTO> db = DataBase.getInstance().getJsonData();
-        UsersDTO user;
+        Map<Integer, UsersDTO> jsonData = DataBase.getInstance().getJsonData();
 
-        if (db.containsKey(userId)) {
-            user = db.get(userId);
-        } else {
-            // Set default settings
-            user = new UsersDTO(
-                    List.of(BanksName.MONOBANK.toString()),
-                    List.of(CurrencyEnum.USD.toString()),
+        if (!jsonData.containsKey(userId)) {
+            jsonData.put(userId, new UsersDTO(
+                    new ArrayList<>(List.of(BanksName.MONOBANK.toString())),
+                    new ArrayList<>(List.of(CurrencyEnum.USD.toString())),
                     12,
                     2
-            );
-
-            db.put(userId, user);
+            ));
         }
 
-        return user;
+        return jsonData.get(userId);
     }
 
     public void updateUserBanks(int userId, List<String> selectedBanks) {
