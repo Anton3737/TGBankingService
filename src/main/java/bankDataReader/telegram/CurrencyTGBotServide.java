@@ -120,8 +120,6 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
             } else if ("Валюта".equals(data)) {
                 Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
-            } else if ("Кращі пропозиції".equals(data)) {
-//                BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
             } else if ("Час сповіщень".equals(data)) {
                 NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
             } else if ("Кількість знаків після коми".equals(data)) {

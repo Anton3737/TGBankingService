@@ -25,11 +25,11 @@ public class Settings {
 
         InlineKeyboardButton banks = InlineKeyboardButton.builder().text("Банк").callbackData("Банк").build();
         InlineKeyboardButton currency = InlineKeyboardButton.builder().text("Валюта").callbackData("Валюта").build();
-        InlineKeyboardButton betterOffers = InlineKeyboardButton.builder().text("Кращі пропозиції").callbackData("Кращі пропозиції").build();
         InlineKeyboardButton notificationsTime = InlineKeyboardButton.builder().text("Час сповіщень").callbackData("Час сповіщень").build();
+        InlineKeyboardButton decimal = InlineKeyboardButton.builder().text("Кількість знаків після коми").callbackData("Кількість знаків після коми").build();
 
         InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(banks, currency, betterOffers, notificationsTime))).build();
+                .keyboard(Collections.singletonList(Arrays.asList(banks, currency, notificationsTime, decimal))).build();
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
 
         try {

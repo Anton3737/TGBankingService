@@ -11,10 +11,12 @@
   },
   "538832410": {
     "bankList": [
-      "MONOBANK"
+      "MONOBANK",
+      "ПРИВАТБАНК"
     ],
     "currencyList": [
-      "USD"
+      "USD",
+      "GBP"
     ],
     "notificationTime": 12,
     "sumbols": 2
