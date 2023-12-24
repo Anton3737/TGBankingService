@@ -11,12 +11,21 @@
   },
   "538832410": {
     "bankList": [
-      "MONOBANK",
-      "ОЩАДБАНК"
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 12,
+    "symbols": 0
+  },
+  "1": {
+    "bankList": [
+      "MONOBANK"
     ],
     "currencyList": [
       "USD",
-      "EUR"
+      "CHF"
     ],
     "notificationTime": 12,
     "symbols": 2

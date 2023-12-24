@@ -31,7 +31,7 @@ public class NotificationsTime {
            PutMarks<String> putClass = new PutMarks<>();
             sendMessage.setReplyMarkup(putClass.addButtons(List.of("9:00", "10:00", "11:00", "12:00", "13:00",
                            "14:00", "15:00", "16:00", "17:00", "18:00", "Вимкнути час сповіщення"),
-                   List.of(notificationTime +":00")));
+                   List.of(notificationTime +":00"), 3));
 
         } catch (Exception e) {
            throw new RuntimeException(e);

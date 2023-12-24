@@ -63,19 +63,24 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
             //  Banks
             try (DataBase db = DataBase.getInstance()) {
-                 long userId = callbackQuery.getMessage().getChat().getId();
+                // Testing data
+                long userId = callbackQuery.getMessage().getChat().getId();
 
+                // Use testing data
                 UsersDTO userInfo = db.getUser((int) userId);
                 List<String> banks = userInfo.getBank();
 
+                // Check choice
                 if (BanksName.PRIVATBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.PRIVATBANK.toString(), banks);
-
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
                 } else if (BanksName.MONOBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.MONOBANK.toString(), banks);
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
 
                 } else if (BanksName.OSHCHADBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.OSHCHADBANK.toString(), banks);
+                    Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
                 }
 
             } catch (Exception e) {
@@ -83,27 +88,34 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
 
-            // Currency
+            //
             try (DataBase db = DataBase.getInstance()) {
-
+                // Testing data
                 long userId = callbackQuery.getMessage().getChat().getId();
 
+                // Use testing data
                 UsersDTO userInfo = db.getUser((int) userId);
                 List<String> currencyList = userInfo.getCurrency();
 
                 if (currencyList != null) {
                     if (CurrencyEnum.USD.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.EUR.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.PLZ.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.GBP.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.CHF.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.CZK.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.CZK.toString(), currencyList);
+                        Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     }
                 }
             } catch (Exception e) {
@@ -116,6 +128,8 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 Banks.namesOfBanks(this, callbackQuery.getMessage().getChat());
             } else if ("Валюта".equals(data)) {
                 Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
+            } else if ("Кращі пропозиції".equals(data)) {
+//                BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
             } else if ("Час сповіщень".equals(data)) {
                 NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
             } else if ("Кількість знаків після коми".equals(data)) {
@@ -123,17 +137,11 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
             // DecimalPlaces
-            if ("2".equals(data) || "3".equals(data) || "4".equals(data)) {
-                try (DataBase db = DataBase.getInstance()) {
-                    long userId = callbackQuery.getMessage().getChat().getId();
+            if ("2".equals(data)||"3".equals(data)||"4".equals(data)) {
+                DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
 
-                    UsersDTO userInfo = db.getUser((int) userId);
-                    userInfo.setSymbols(Integer.parseInt(data));
-                    DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
             }
+
         }
     }
 

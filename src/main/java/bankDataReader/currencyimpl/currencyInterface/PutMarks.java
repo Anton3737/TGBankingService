@@ -4,7 +4,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PutMarks<T> {
@@ -16,10 +15,13 @@ public class PutMarks<T> {
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams, int rows) {
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder inlineKeyboardMarkup = InlineKeyboardMarkup.builder();
 
+        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
         List<InlineKeyboardButton> buttonList = new ArrayList<>();
 
-
+        int i = 0;
         for (T button: buttonTexts) {
+            i+=1;
+
             String text = button.toString();
             String finalText;
             if (userParams.contains(text)){
@@ -30,8 +32,18 @@ public class PutMarks<T> {
 
             InlineKeyboardButton buttonObject = InlineKeyboardButton.builder().text(finalText).callbackData(text).build();
             buttonList.add(buttonObject);
+
+            if (i%rows==0) {
+                rowsInline.add(buttonList);
+                buttonList = new ArrayList<>();
+            }
         }
 
-        return inlineKeyboardMarkup.keyboard(Collections.singleton(buttonList)).build();
+        if (!buttonList.isEmpty()) {
+            rowsInline.add(buttonList);
+        }
+
+        return inlineKeyboardMarkup.keyboard(rowsInline).build();
     }
+
 }
