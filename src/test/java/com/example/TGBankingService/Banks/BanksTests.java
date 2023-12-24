@@ -1,17 +1,21 @@
-package bankDataReader.telegram;
+package com.example.TGBankingService.Banks;
 
 import bankDataReader.currencyimpl.MinFin;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.BankData;
 import bankDataReader.dto.UsersDTO;
+import bankDataReader.enums.BanksName;
+import bankDataReader.enums.CurrencyEnum;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelegramPrettyPrinter {
+public class BanksTests {
 
 
-    public static String resultDataForPrint() {
+    @Test
+    public void resultDataFOrPrint() {
 
         try (DataBase db = DataBase.getInstance()) {
             // Testing data
@@ -24,7 +28,7 @@ public class TelegramPrettyPrinter {
             String url = "https://minfin.com.ua/ua/currency/banks/";
 
             String tmp = "";
-            List<BankData> dataInfo = new ArrayList<>();
+            List<String> urlList = new ArrayList<>();
             for (String searchCurrency : userInfo.getCurrency()) {
                 tmp = url + searchCurrency.toLowerCase();
                 for (BankData searchBank : MinFin.сurrencyParser(tmp)) {
@@ -33,19 +37,13 @@ public class TelegramPrettyPrinter {
                         System.out.println(searchBank.getName());
                         System.out.println("Купівля " + searchBank.getPriceToBuy());
                         System.out.println("Продаж " + searchBank.getPriceForSale());
-
-                        dataInfo.add(searchBank);
-
                     }
                 }
             }
-            return dataInfo.toString();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-
     }
-
-
 }

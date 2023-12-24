@@ -1,6 +1,8 @@
 package bankDataReader.currencyimpl;
 
 import bankDataReader.dto.BankData;
+import bankDataReader.enums.BanksName;
+import bankDataReader.enums.CurrencyEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -16,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    public List<BankData> сurrencyParser(String url) throws IOException {
+    public static List<BankData> сurrencyParser(String url) throws IOException {
         List<BankData> bankDataList = new ArrayList<>();
 
         Connection connection = Jsoup.connect(url);
@@ -39,12 +41,31 @@ public class MinFin {
             double priceForSale = extractPrice(dataTitle.replaceAll("/(.*)", ""));
 
             BankData bankData = new BankData(name, priceToBuy, priceForSale);
-            bankDataList.add(bankData);
+
+            try {
+                if (bankData.getName().equals(BanksName.MONOBANK.toString())) {
+                    for (BankData data : bankDataList) {
+                        if (data.getName().equals(BanksName.UNIVERSALBANK.toString())) {
+                            data.setName(BanksName.MONOBANK.toString());
+
+//                            bankData.setPriceToBuy(data.getPriceToBuy());
+//                            bankData.setPriceForSale(data.getPriceForSale());
+                            bankDataList.add(data);
+                        }
+                    }
+                } else {
+                    bankDataList.add(bankData);
+                }
+            } catch (RuntimeException e) {
+
+            }
+
+
 //            System.out.println("Продаж " + bankData.getPriceForSale());
 //            System.out.println("купівля " + bankData.getPriceToBuy());
         }
 
-        System.out.println("Collection size: " + bankDataList.size());
+//        System.out.println("Collection size: " + bankDataList.size());
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataList);
@@ -52,7 +73,7 @@ public class MinFin {
         return bankDataList;
     }
 
-    private double extractPrice(String data) {
+    private static double extractPrice(String data) {
         String pricePattern = "\\d+\\.\\d+";
 
         Pattern pattern = Pattern.compile(pricePattern);
@@ -71,6 +92,7 @@ public class MinFin {
 //        System.out.println(price);
         return price;
     }
+
 
     public static void main(String[] args) throws IOException {
         MinFin minFin = new MinFin();

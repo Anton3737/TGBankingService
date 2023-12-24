@@ -13,4 +13,18 @@ public class GetUrlCurrency {
 
         return "https://minfin.com.ua/ua/currency/banks/" + currency + "/";
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
