@@ -32,11 +32,9 @@ public class TelegramPrettyPrinter {
     public static String resultDataForPrint(Chat chat) {
 
         try (DataBase db = DataBase.getInstance()) {
-            // Testing data
 
             long userId = chat.getId();
 
-            // Use testing data
             UsersDTO userInfo = db.getUser((int) userId);
 
             List<BankData> dataInfo = new ArrayList<>();
@@ -57,9 +55,5 @@ public class TelegramPrettyPrinter {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
-
 }

@@ -36,7 +36,6 @@ public class MinFin {
 
         while (matcher.find()) {
             String dataTitle = matcher.group(1);
-//            String dataCard = matcher.group(2);
             String name = matcher.group(3).replaceAll("<span[^>]*>.*?</span>", "").toUpperCase().trim();
 
             double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)", ""));
@@ -60,14 +59,8 @@ public class MinFin {
             } catch (RuntimeException e) {
 
             }
-//            bankDataList.add(bankData);
 
-
-//            System.out.println("Продаж " + bankData.getPriceForSale());
-//            System.out.println("купівля " + bankData.getPriceToBuy());
         }
-
-//        System.out.println("Collection size: " + bankDataList.size());
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataList);
@@ -91,7 +84,6 @@ public class MinFin {
                 e.printStackTrace();
             }
         }
-//        System.out.println(price);
         return price;
     }
 

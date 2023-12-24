@@ -3,28 +3,18 @@ package bankDataReader.telegram;
 import bankDataReader.commands.Command;
 import bankDataReader.currencyimpl.views.*;
 import bankDataReader.db.DataBase;
-import bankDataReader.db.User;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 import bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
+public class CurrencyTGBotService extends TelegramLongPollingCommandBot {
 
-    public CurrencyTGBotServide() {
+    public CurrencyTGBotService() {
 
         register(new Command());
     }
@@ -104,8 +94,8 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                     } else if (CurrencyEnum.EUR.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
                         Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
-                    } else if (CurrencyEnum.PLZ.toString().equals(data)) {
-                        Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                    } else if (CurrencyEnum.PLN.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.PLN.toString(), currencyList);
                         Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
                     } else if (CurrencyEnum.GBP.toString().equals(data)) {
                         Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
@@ -136,13 +126,50 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
             }
 
-            // DecimalPlaces
-            if ("2".equals(data)||"3".equals(data)||"4".equals(data)) {
-                DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
 
+            // DecimalPlaces
+            try (DataBase db = DataBase.getInstance()) {
+
+                long userId = callbackQuery.getMessage().getChat().getId();
+
+                UsersDTO userInfo = db.getUser((int) userId);
+
+                if ("2".equals(data) || "3".equals(data) || "4".equals(data)) {
+                    userInfo.setSymbols(Integer.parseInt(data));
+                    DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+
+            // Notification
+            try (DataBase db = DataBase.getInstance()) {
+                long userId = callbackQuery.getMessage().getChat().getId();
+
+                UsersDTO userInfo = db.getUser((int) userId);
+
+                if ("09:00".equals(data) || "10:00".equals(data) || "11:00".equals(data) || "12:00".equals(data) || "13:00".equals(data) || "14:00".equals(data)
+                        || "15:00".equals(data) || "16:00".equals(data) || "17:00".equals(data) || "18:00".equals(data) || "19:00".equals(data)) {
+
+                    userInfo.setNotificationTime(Integer.parseInt(data.replaceAll(":00", "")));
+
+                    NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
+
+                } else if ("Вимкнути час сповіщення".equals(data)) {
+                    userInfo.setNotificationTime(-1);
+                }
+
+                String tmp = String.valueOf(userInfo.getNotificationTime()) + ":00";
+                if (NotificationsTime.timer().equals(tmp)) {
+                    Info.getInfoMethod(this, callbackQuery.getMessage().getChat());
+                    return;
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
         }
     }
-
 }

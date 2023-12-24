@@ -46,9 +46,4 @@ public class BankData {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return currencyCode.toUpperCase() + "\n" + name + "\n" + "Купівля " + priceToBuy + "\n" + "Продаж " + priceForSale + "\n";
-//
-//    }
 }

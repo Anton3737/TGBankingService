@@ -50,6 +50,4 @@ public class User {
             e.printStackTrace();
         }
     }
-
-
 }

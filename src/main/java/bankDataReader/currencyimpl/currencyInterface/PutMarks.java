@@ -9,7 +9,7 @@ import java.util.List;
 public class PutMarks<T> {
 
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams) {
-        return this.addButtons(buttonTexts, userParams, 3);
+        return this.addButtons(buttonTexts, userParams, 1);
     }
 
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams, int rows) {
@@ -19,12 +19,12 @@ public class PutMarks<T> {
         List<InlineKeyboardButton> buttonList = new ArrayList<>();
 
         int i = 0;
-        for (T button: buttonTexts) {
-            i+=1;
+        for (T button : buttonTexts) {
+            i += 1;
 
             String text = button.toString();
             String finalText;
-            if (userParams.contains(text)){
+            if (userParams.contains(text)) {
                 finalText = Checkmark.addCheck(text);
             } else {
                 finalText = text;
@@ -33,7 +33,7 @@ public class PutMarks<T> {
             InlineKeyboardButton buttonObject = InlineKeyboardButton.builder().text(finalText).callbackData(text).build();
             buttonList.add(buttonObject);
 
-            if (i%rows==0) {
+            if (i % rows == 0) {
                 rowsInline.add(buttonList);
                 buttonList = new ArrayList<>();
             }

@@ -50,14 +50,14 @@ public class Currency {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        try (DataBase db = DataBase.getInstance()){
+        try (DataBase db = DataBase.getInstance()) {
             UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
 
             List<String> userCurrency = userInfo.getCurrency();
             PutMarks<CurrencyEnum> putClass = new PutMarks<>();
 
             sendMessage.setReplyMarkup(putClass.addButtons(List.of(CurrencyEnum.USD, CurrencyEnum.EUR,
-                    CurrencyEnum.PLZ, CurrencyEnum.GBP, CurrencyEnum.CHF,
+                    CurrencyEnum.PLN, CurrencyEnum.GBP, CurrencyEnum.CHF,
                     CurrencyEnum.CZK), userCurrency));
 
         } catch (Exception e) {

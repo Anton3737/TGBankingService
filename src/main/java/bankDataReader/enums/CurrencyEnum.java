@@ -6,7 +6,7 @@ public enum CurrencyEnum {
     GBP,
     CHF,
     SEK,
-    PLZ,
+    PLN,
     NOK,
     JPY,
     DKK,
@@ -30,8 +30,8 @@ public enum CurrencyEnum {
                 return "CHF";
             case SEK:
                 return "SEK";
-            case PLZ:
-                return "PLZ";
+            case PLN:
+                return "PLN";
             case NOK:
                 return "NOK";
             case JPY:

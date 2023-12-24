@@ -44,14 +44,16 @@ public class Banks {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        try (DataBase db = DataBase.getInstance()){
+        try (DataBase db = DataBase.getInstance()) {
             UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
 
             List<String> banks = userInfo.getBank();
             PutMarks<BanksName> putClass = new PutMarks<>();
-            sendMessage.setReplyMarkup(putClass.addButtons(List.of(BanksName.PRIVATBANK,
+            List<BanksName> bankButtons = List.of(BanksName.PRIVATBANK,
                     BanksName.MONOBANK,
-                    BanksName.OSHCHADBANK), banks));
+                    BanksName.OSHCHADBANK);
+            sendMessage.setReplyMarkup(putClass.addButtons(bankButtons, banks, 1));
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
