@@ -7,6 +7,7 @@ import bankDataReader.enums.BanksName;
 
 import org.junit.Test;
 
+import java.util.Currency;
 import java.util.List;
 
 public class PutMarksTest {
@@ -14,14 +15,9 @@ public class PutMarksTest {
     public void putFuncTest(){
         try (DataBase db = DataBase.getInstance()){
             UsersDTO userInfo = db.getUser(0);
-            int sumbols = userInfo.getSumbols();
+            List<String> currencyList = userInfo.getCurrency();
 
-            PutMarks<String> sumbolsAftercoma = new PutMarks<>();
-
-            sumbolsAftercoma.addButtons(
-                    List.of("2", "3", "4"),
-                    List.of(String.valueOf(sumbols))
-            );
+//            currencyList.add()
 
         } catch (Exception e) {
             throw new RuntimeException(e);
