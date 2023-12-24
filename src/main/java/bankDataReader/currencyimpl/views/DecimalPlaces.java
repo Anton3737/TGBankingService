@@ -5,13 +5,9 @@ import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class DecimalPlaces {
@@ -22,18 +18,23 @@ public class DecimalPlaces {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton two = InlineKeyboardButton.builder().text("2").callbackData("2").build();
-        InlineKeyboardButton three = InlineKeyboardButton.builder().text("3").callbackData("3").build();
-        InlineKeyboardButton four = InlineKeyboardButton.builder().text("4").callbackData("4").build();
+        try (DataBase db = DataBase.getInstance()){
+            UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(two, three, four))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+            int afterComa = userInfo.getSymbols();
+            PutMarks<String> putClass = new PutMarks<>();
+            sendMessage.setReplyMarkup(putClass.addButtons(List.of("1",
+                    "2",
+                    "3"), List.of(String.valueOf(afterComa))));
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
     }

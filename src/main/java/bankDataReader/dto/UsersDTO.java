@@ -1,7 +1,5 @@
 package bankDataReader.dto;
 
-import bankDataReader.enums.CurrencyEnum;
-
 import java.util.List;
 
 //Описовий клас для створення екземплярів класу для наших користувачів,
@@ -10,13 +8,13 @@ public class UsersDTO {
     List<String> bankList;
     List<String> currencyList;
     int notificationTime;
-    int sumbols;
+    int symbols;
 
-    public UsersDTO(List<String> bankList, List<String> currencyList, int notificationTime, int sumbols) {
+    public UsersDTO(List<String> bankList, List<String> currencyList, int notificationTime, int symbols) {
         this.bankList = bankList;
         this.currencyList = currencyList;
         this.notificationTime = notificationTime;
-        this.sumbols = sumbols;
+        this.symbols = symbols;
     }
 
     public List<String> getBank() {
@@ -43,11 +41,11 @@ public class UsersDTO {
         this.notificationTime = notificationTime;
     }
 
-    public int getSumbols() {
-        return sumbols;
+    public int getSymbols() {
+        return symbols;
     }
 
-    public void setSumbols(int sumbols) {
-        this.sumbols = sumbols;
+    public void setSymbols(int symbols) {
+        this.symbols = symbols;
     }
 }

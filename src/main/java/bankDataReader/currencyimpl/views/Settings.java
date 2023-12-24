@@ -1,6 +1,7 @@
 package bankDataReader.currencyimpl.views;
 
 import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -23,19 +24,16 @@ public class Settings {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton banks = InlineKeyboardButton.builder().text("Банк").callbackData("Банк").build();
-        InlineKeyboardButton currency = InlineKeyboardButton.builder().text("Валюта").callbackData("Валюта").build();
-        InlineKeyboardButton notificationsTime = InlineKeyboardButton.builder().text("Час сповіщень").callbackData("Час сповіщень").build();
-        InlineKeyboardButton decimal = InlineKeyboardButton.builder().text("Кількість знаків після коми").callbackData("Кількість знаків після коми").build();
-
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(banks, currency, notificationsTime, decimal))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+        PutMarks<String> putClass = new PutMarks<>();
+        sendMessage.setReplyMarkup(putClass.addButtons(List.of("Банки",
+                "Валюти",
+                "Кількість знаків після коми",
+                "Час сповіщень"), new ArrayList<>()));
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
 

@@ -1,6 +1,10 @@
 package bankDataReader.currencyimpl.views;
 
+import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
+import bankDataReader.dto.UsersDTO;
+import bankDataReader.enums.BanksName;
 import bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
@@ -46,21 +50,24 @@ public class Currency {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton USD = InlineKeyboardButton.builder().text("USD").callbackData(CurrencyEnum.USD.toString()).build();
-        InlineKeyboardButton EUR = InlineKeyboardButton.builder().text("EUR").callbackData(CurrencyEnum.EUR.toString()).build();
-        InlineKeyboardButton PLZ = InlineKeyboardButton.builder().text("PLZ").callbackData(CurrencyEnum.PLZ.toString()).build();
-        InlineKeyboardButton GBP = InlineKeyboardButton.builder().text("GBP").callbackData(CurrencyEnum.GBP.toString()).build();
-        InlineKeyboardButton CHF = InlineKeyboardButton.builder().text("CHF").callbackData(CurrencyEnum.CHF.toString()).build();
-        InlineKeyboardButton CZK = InlineKeyboardButton.builder().text("CZK").callbackData(CurrencyEnum.CZK.toString()).build();
+        try (DataBase db = DataBase.getInstance()){
+            UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(USD, EUR, PLZ, GBP, CHF, CZK))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+            List<String> userCurrency = userInfo.getCurrency();
+            PutMarks<CurrencyEnum> putClass = new PutMarks<>();
+
+            sendMessage.setReplyMarkup(putClass.addButtons(List.of(CurrencyEnum.USD, CurrencyEnum.EUR,
+                    CurrencyEnum.PLZ, CurrencyEnum.GBP, CurrencyEnum.CHF,
+                    CurrencyEnum.CZK), userCurrency));
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
     }

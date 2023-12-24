@@ -4,11 +4,8 @@ import bankDataReader.currencyimpl.MinFin;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.BankData;
 import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,7 @@ public class TelegramPrettyPrinter {
                     }
                 }
             }
-            return textPretty(dataInfo, userInfo.getSumbols());
+            return textPretty(dataInfo, userInfo.getSymbols());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
