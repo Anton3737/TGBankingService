@@ -57,6 +57,17 @@ public class TelegramPrettyPrinter {
 //        return df.format(number);
 //    }
 
+    private static String textPretty(List<BankData> bankList) {
+        StringBuilder stringBuilder = new StringBuilder("Інфо:\n");
+        for (BankData bank: bankList) {
+            stringBuilder.append(bank.getName()).append(" ").append(bank.getCurrencyCode()).append(":\n");
+            stringBuilder.append("Продаж: ").append(bank.getPriceForSale()).append("\n");
+            stringBuilder.append("Купівля: ").append(bank.getPriceToBuy()).append("\n\n");
+        }
+
+        return stringBuilder.toString();
+    }
+
     public static String resultDataForPrint(Chat chat) {
 
         try (DataBase db = DataBase.getInstance()) {
@@ -67,11 +78,9 @@ public class TelegramPrettyPrinter {
             // Use testing data
             UsersDTO userInfo = db.getUser((int) userId);
 
-            String tmp = "";
             List<BankData> dataInfo = new ArrayList<>();
             for (String searchCurrency : userInfo.getCurrency()) {
-                tmp = searchCurrency.toLowerCase();
-                for (BankData searchBank : MinFin.сurrencyParser(tmp)) {
+                for (BankData searchBank : MinFin.сurrencyParser(searchCurrency.toLowerCase())) {
                     if (userInfo.getBank().contains(searchBank.getName())) {
                         System.out.println(searchCurrency);
                         System.out.println(searchBank.getName());
@@ -83,7 +92,7 @@ public class TelegramPrettyPrinter {
                     }
                 }
             }
-            return dataInfo.toString();
+            return textPretty(dataInfo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
