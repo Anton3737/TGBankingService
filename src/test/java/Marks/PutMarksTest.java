@@ -4,7 +4,7 @@ import bankDataReader.currencyimpl.currencyInterface.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
-import bankDataReader.enums.Currency;
+
 import org.junit.Test;
 
 import java.util.List;

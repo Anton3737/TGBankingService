@@ -99,13 +99,10 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                     Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
                 } else if (CurrencyEnum.EUR.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
-
                 } else if (CurrencyEnum.PLZ.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
-
                 } else if (CurrencyEnum.GBP.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
-
                 } else if (CurrencyEnum.CHF.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
 
@@ -124,7 +121,7 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             } else if ("Валюта".equals(data)) {
                 Currency.chooseCurrency(this, callbackQuery.getMessage().getChat());
             } else if ("Кращі пропозиції".equals(data)) {
-                BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
+//                BestOffers.bestCurrencyOffers(this, callbackQuery.getMessage().getChat());
             } else if ("Час сповіщень".equals(data)) {
                 NotificationsTime.setNotificationsTime(this, callbackQuery.getMessage().getChat());
             } else if ("Кількість знаків після коми".equals(data)) {

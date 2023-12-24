@@ -1,7 +1,6 @@
 package bankDataReader.currencyimpl.views;
 
 import bankDataReader.currencyimpl.currencyInterface.PutMarks;
-import bankDataReader.enums.Currency;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;

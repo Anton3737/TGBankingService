@@ -3,7 +3,6 @@ package bankDataReader.currencyimpl.views;
 import bankDataReader.currencyimpl.currencyInterface.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.Currency;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -23,7 +22,7 @@ public class DecimalPlaces {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        try (DataBase db = DataBase.getInstance()){
+        try (DataBase db = DataBase.getInstance()) {
             UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
             int sumbols = userInfo.getSumbols();
 

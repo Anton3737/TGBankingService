@@ -33,10 +33,12 @@ public class Banks {
     }
 
 
-    public static void bankChoiser(String namebank , List<BankData> dataList){
-
-
-
+    public static void oneChoice(String bankName, List<String> userBanks) {
+        if (userBanks.contains(bankName)) {
+            userBanks.remove(bankName);
+        } else {
+            userBanks.add(bankName);
+        }
     }
 
 
@@ -46,9 +48,9 @@ public class Banks {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        InlineKeyboardButton Private = InlineKeyboardButton.builder().text("ПриватБанк").callbackData("ПриватБанк").build();
-        InlineKeyboardButton Mono = InlineKeyboardButton.builder().text("Монобанк").callbackData("Монобанк").build();
-        InlineKeyboardButton Oshchad = InlineKeyboardButton.builder().text("Ощадбанк").callbackData("Ощадбанк").build();
+        InlineKeyboardButton Private = InlineKeyboardButton.builder().text("Приват").callbackData(BanksName.PRIVATBANK.toString()).build();
+        InlineKeyboardButton Mono = InlineKeyboardButton.builder().text("Монобанк").callbackData(BanksName.MONOBANK.toString()).build();
+        InlineKeyboardButton Oshchad = InlineKeyboardButton.builder().text("Ощадбанк").callbackData(BanksName.OSHCHADBANK.toString()).build();
 
         InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singletonList(Arrays.asList(Private, Mono, Oshchad))).build();

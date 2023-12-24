@@ -24,7 +24,7 @@ public class DataBaseTest {
         try (DataBase db = DataBase.getInstance()) {
             // Testing data
             String data = BanksName.MONOBANK.toString();
-            int userId = 1;
+            int userId = 0;
 
             // Use testing data
             UsersDTO userInfo = db.getUser(userId);
