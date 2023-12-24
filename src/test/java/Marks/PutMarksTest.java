@@ -17,8 +17,10 @@ public class PutMarksTest {
             UsersDTO userInfo = db.getUser(0);
 
             List<String> banks = userInfo.getBank();
-            PutMarks<String> putClass = new PutMarks<>();
-            putClass.addButtons(banks, banks);
+            PutMarks<BanksName> putClass = new PutMarks<>();
+            putClass.addButtons(List.of(BanksName.PRIVATBANK,
+                    BanksName.MONOBANK,
+                    BanksName.OSHCHADBANK), banks);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
