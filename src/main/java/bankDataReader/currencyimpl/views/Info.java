@@ -8,6 +8,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Info {
 
+
+
     // Чекаємо BD
 
     public static void getInfoMethod(AbsSender absSender, Chat chat) {

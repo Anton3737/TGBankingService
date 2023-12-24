@@ -18,7 +18,9 @@ import java.util.regex.Pattern;
 
 public class MinFin {
 
-    public static List<BankData> сurrencyParser(String url) throws IOException {
+    public static List<BankData> сurrencyParser(String currency) throws IOException {
+        String url = "https://minfin.com.ua/ua/currency/banks/" + currency;
+
         List<BankData> bankDataList = new ArrayList<>();
 
         Connection connection = Jsoup.connect(url);
@@ -40,7 +42,7 @@ public class MinFin {
             double priceToBuy = extractPrice(dataTitle.replaceAll("^(.*?)(?=/)", ""));
             double priceForSale = extractPrice(dataTitle.replaceAll("/(.*)", ""));
 
-            BankData bankData = new BankData(name, priceToBuy, priceForSale);
+            BankData bankData = new BankData(currency, name, priceToBuy, priceForSale);
 
             try {
                 if (bankData.getName().equals(BanksName.MONOBANK.toString())) {

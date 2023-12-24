@@ -1,36 +1,42 @@
 package bankDataReader.telegram;
 
+import bankDataReader.currencyimpl.MinFin;
+import bankDataReader.db.DataBase;
+import bankDataReader.dto.BankData;
+import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.CurrencyEnum;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelegramPrettyPrinter {
-    public static final String FORMAT = "%s %s => UAH = %s";
-    String pattern = "#.00";
-    String buy = "Купити";
-    String sale = "Продати";
-
-    public String setDecimalPattern(String number) {
-        switch (number) {
-            case "2" -> pattern = "#.00";
-            case "3" -> pattern = "#.000";
-            case "4" -> pattern = "#.0000";
-        }
-        return pattern;
-    }
-
-    public String prettyRateBuy(double price, CurrencyEnum ccy) {
-        DecimalFormat df = new DecimalFormat(pattern);
-        df.setRoundingMode(RoundingMode.CEILING);
-        return String.format(FORMAT, buy, ccy, df.format(price));
-    }
-
-    public String prettyRateSale(double price, CurrencyEnum ccy) {
-        DecimalFormat df = new DecimalFormat(pattern);
-        df.setRoundingMode(RoundingMode.FLOOR);
-        return String.format(FORMAT, sale, ccy, df.format(price));
-    }
+//    public static final String FORMAT = "%s %s => UAH = %s";
+//    String pattern = "#.00";
+//    String buy = "Купити";
+//    String sale = "Продати";
+//
+//    public String setDecimalPattern(String number) {
+//        switch (number) {
+//            case "2" -> pattern = "#.00";
+//            case "3" -> pattern = "#.000";
+//            case "4" -> pattern = "#.0000";
+//        }
+//        return pattern;
+//    }
+//
+//    public String prettyRateBuy(double price, CurrencyEnum ccy) {
+//        DecimalFormat df = new DecimalFormat(pattern);
+//        df.setRoundingMode(RoundingMode.CEILING);
+//        return String.format(FORMAT, buy, ccy, df.format(price));
+//    }
+//
+//    public String prettyRateSale(double price, CurrencyEnum ccy) {
+//        DecimalFormat df = new DecimalFormat(pattern);
+//        df.setRoundingMode(RoundingMode.FLOOR);
+//        return String.format(FORMAT, sale, ccy, df.format(price));
+//    }
 
     //Цей метод для тесту чи працюють попередні
 //    public static void main(String[] args) {
@@ -38,6 +44,52 @@ public class TelegramPrettyPrinter {
 //        tpp.setDecimalPattern("3");
 //        System.out.println(tpp.prettyRateBuy(67.89066, CurrencyEnum.USD) + "\n" + tpp.prettyRateSale(67.89066, CurrencyEnum.USD));
 //    }
+
+
+//    private static String formatNumber(float number, int digits) {
+//        // Create sample for DecimalFormat
+//
+//        DecimalFormat df = new DecimalFormat("#." + "#".repeat(Math.max(0, digits)));
+//
+//        // Formatting
+//        return df.format(number);
+//    }
+
+    public static String resultDataForPrint() {
+
+        try (DataBase db = DataBase.getInstance()) {
+            // Testing data
+
+            int userId = 538832410;
+
+            // Use testing data
+            UsersDTO userInfo = db.getUser(userId);
+
+//            String url = "https://minfin.com.ua/ua/currency/banks/";
+
+            String tmp = "";
+            List<BankData> dataInfo = new ArrayList<>();
+            for (String searchCurrency : userInfo.getCurrency()) {
+                tmp = searchCurrency.toLowerCase();
+                for (BankData searchBank : MinFin.сurrencyParser(tmp)) {
+                    if (userInfo.getBank().contains(searchBank.getName())) {
+                        System.out.println(searchCurrency);
+                        System.out.println(searchBank.getName());
+                        System.out.println("Купівля " + searchBank.getPriceToBuy());
+                        System.out.println("Продаж " + searchBank.getPriceForSale());
+
+                        dataInfo.add(searchBank);
+
+                    }
+                }
+            }
+            return dataInfo.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
 }
