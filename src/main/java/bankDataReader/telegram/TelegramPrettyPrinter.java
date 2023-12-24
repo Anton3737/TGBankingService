@@ -48,21 +48,18 @@ public class TelegramPrettyPrinter {
 //    }
 
 
-//    private static String formatNumber(float number, int digits) {
-//        // Create sample for DecimalFormat
-//
-//        DecimalFormat df = new DecimalFormat("#." + "#".repeat(Math.max(0, digits)));
-//
-//        // Formatting
-//        return df.format(number);
-//    }
+    private static String formatNumber(double number, int digits) {
+        DecimalFormat df = new DecimalFormat("#." + "#".repeat(Math.max(0, digits)));
 
-    private static String textPretty(List<BankData> bankList) {
+        return df.format(number);
+    }
+
+    private static String textPretty(List<BankData> bankList, int afterComa) {
         StringBuilder stringBuilder = new StringBuilder("Інфо:\n");
         for (BankData bank: bankList) {
             stringBuilder.append(bank.getName()).append(" ").append(bank.getCurrencyCode()).append(":\n");
-            stringBuilder.append("Продаж: ").append(bank.getPriceForSale()).append("\n");
-            stringBuilder.append("Купівля: ").append(bank.getPriceToBuy()).append("\n\n");
+            stringBuilder.append("Продаж: ").append(formatNumber(bank.getPriceForSale(), afterComa)).append("\n");
+            stringBuilder.append("Купівля: ").append(formatNumber(bank.getPriceToBuy(), afterComa)).append("\n\n");
         }
 
         return stringBuilder.toString();
@@ -92,7 +89,7 @@ public class TelegramPrettyPrinter {
                     }
                 }
             }
-            return textPretty(dataInfo);
+            return textPretty(dataInfo, userInfo.getSumbols());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
