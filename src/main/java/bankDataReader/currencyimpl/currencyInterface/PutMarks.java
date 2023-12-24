@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class PutMarks<T> {
+
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams) {
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder inlineKeyboardMarkup = InlineKeyboardMarkup.builder();
         List<InlineKeyboardButton> buttonList = new ArrayList<>();
@@ -22,7 +23,6 @@ public class PutMarks<T> {
                 finalText = text;
             }
 
-            System.out.println(finalText);
             InlineKeyboardButton buttonObject = InlineKeyboardButton.builder().text(finalText).callbackData(text).build();
             buttonList.add(buttonObject);
         }
