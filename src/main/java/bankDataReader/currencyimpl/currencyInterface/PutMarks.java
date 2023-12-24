@@ -22,6 +22,7 @@ public class PutMarks<T> {
                 finalText = text;
             }
 
+            System.out.println(finalText);
             InlineKeyboardButton buttonObject = InlineKeyboardButton.builder().text(finalText).callbackData(text).build();
             buttonList.add(buttonObject);
         }
