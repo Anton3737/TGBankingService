@@ -1,5 +1,9 @@
 package bankDataReader.currencyimpl.views;
 
+import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.db.DataBase;
+import bankDataReader.dto.UsersDTO;
+import bankDataReader.enums.BanksName;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -9,6 +13,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class NotificationsTime {
 
@@ -17,22 +22,26 @@ public class NotificationsTime {
         String titleMessage = "Оберіть час сповіщень";
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
-        InlineKeyboardButton nine = InlineKeyboardButton.builder().text("9:00").callbackData("9:00").build();
-        InlineKeyboardButton ten = InlineKeyboardButton.builder().text("10:00").callbackData("10:00").build();
-        InlineKeyboardButton eleven = InlineKeyboardButton.builder().text("11:00").callbackData("11:00").build();
-        InlineKeyboardButton twelve = InlineKeyboardButton.builder().text("12:00").callbackData("12:00").build();
-        InlineKeyboardButton eighteen = InlineKeyboardButton.builder().text("18:00").callbackData("18:00").build();
-        InlineKeyboardButton turnNotificationsOff = InlineKeyboardButton.builder().text("Вимкнути сповіщення").callbackData("Вимкнути сповіщення").build();
 
+        try (DataBase db = DataBase.getInstance()){
+           UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
 
-        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singletonList(Arrays.asList(nine, ten, eleven, twelve, eighteen, turnNotificationsOff))).build();
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+           int notificationTime = userInfo.getNotificationTime();
+
+           PutMarks<String> putClass = new PutMarks<>();
+            sendMessage.setReplyMarkup(putClass.addButtons(List.of("9:00", "10:00", "11:00", "12:00", "13:00",
+                           "14:00", "15:00", "16:00", "17:00", "18:00", "Вимкнути час сповіщення"),
+                   List.of(notificationTime +":00")));
+
+        } catch (Exception e) {
+           throw new RuntimeException(e);
+        }
+
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
     }

@@ -129,14 +129,9 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
             // DecimalPlaces
-            if ("2".equals(data)) {
-
-            } else if ("3".equals(data)) {
-
-            } else if ("4".equals(data)) {
-
+            if ("2".equals(data)||"3".equals(data)||"4".equals(data)) {
+                DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
             }
-
 
         }
     }

@@ -10,7 +10,12 @@ import java.util.List;
 public class PutMarks<T> {
 
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams) {
+        return this.addButtons(buttonTexts, userParams, 1);
+    }
+
+    public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams, int rows) {
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder inlineKeyboardMarkup = InlineKeyboardMarkup.builder();
+
         List<InlineKeyboardButton> buttonList = new ArrayList<>();
 
 

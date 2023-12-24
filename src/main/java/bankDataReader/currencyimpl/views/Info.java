@@ -21,7 +21,7 @@ public class Info {
             absSender.execute(sendMessage);
 
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
             System.out.println("Something wrong with sending settings message :(");
         }
     }
