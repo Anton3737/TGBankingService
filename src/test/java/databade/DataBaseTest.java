@@ -1,11 +1,13 @@
 package databade;
 
+import bankDataReader.currencyimpl.views.Currency;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 import bankDataReader.enums.CurrencyEnum;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseTest {
@@ -53,30 +55,35 @@ public class DataBaseTest {
     public void getUserCurrency() {
         try (DataBase db = DataBase.getInstance()) {
             // Testing data
-            String data = CurrencyEnum.USD.toString();
+            String data = CurrencyEnum.CHF.toString();
             int userId = 1;
 
             // Use testing data
             UsersDTO userInfo = db.getUser(userId);
-            List<String> banks = userInfo.getBank();
+            List<String> currencyList = userInfo.getCurrency();
 
-            // Check choice
-            if (BanksName.PRIVATBANK.toString().equals(data)) {
-                oneChoice(BanksName.PRIVATBANK.toString(), banks);
-
-            } else if (BanksName.MONOBANK.toString().equals(data)) {
-                oneChoice(BanksName.MONOBANK.toString(), banks);
-
-            } else if (BanksName.OSHCHADBANK.toString().equals(data)) {
-                oneChoice(BanksName.OSHCHADBANK.toString(), banks);
+            if (currencyList != null) {
+                if (CurrencyEnum.USD.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
+                } else if (CurrencyEnum.EUR.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
+                } else if (CurrencyEnum.PLZ.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                } else if (CurrencyEnum.GBP.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
+                } else if (CurrencyEnum.CHF.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
+                } else if (CurrencyEnum.CZK.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.CZK.toString(), currencyList);
+                }
             }
-
-            System.out.println(userInfo.getCurrency());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
+
 
 
 }

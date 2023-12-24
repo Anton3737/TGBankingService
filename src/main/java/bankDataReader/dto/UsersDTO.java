@@ -31,8 +31,8 @@ public class UsersDTO {
         return currencyList;
     }
 
-    public void setCurrency(List<String> currencyEnum) {
-        this.currencyList = currencyEnum;
+    public void setCurrency(List<String> currency) {
+        this.currencyList = currency;
     }
 
     public int getNotificationTime() {

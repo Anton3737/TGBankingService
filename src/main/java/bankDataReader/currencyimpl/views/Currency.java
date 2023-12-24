@@ -1,7 +1,9 @@
 package bankDataReader.currencyimpl.views;
 
+import bankDataReader.db.User;
 import bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -13,6 +15,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Currency {
+
+    public static void processCurrencySelection(CallbackQuery callbackQuery, int userId) {
+        User userDb = new User();
+
+        String selectedCurrency = callbackQuery.getData();
+
+        List<String> selectedCurrencyList = userDb.getUser(userId).getCurrency();
+
+        selectedCurrencyList.add(selectedCurrency);
+
+        // оновлення списку банків для користувача в базі даних в классі юзер
+
+        userDb.updateUserCurrency(userId, selectedCurrencyList);
+
+    }
 
     public static void currencyChoice(String currencyName, List<String> currencyList) {
         if (currencyList.contains(currencyName)) {

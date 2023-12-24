@@ -24,14 +24,11 @@ public class Banks {
         String selectedBank = callbackQuery.getData();
 
         List<String> selectedBanks = userDb.getUser(userId).getBank();
-        List<String> selectedCurrency = userDb.getUser(userId).getCurrency();
 
         selectedBanks.add(selectedBank);
-        selectedCurrency.add(selectedBank);
 
         // оновлення списку банків для користувача в базі даних в классі юзер
-        userDb.updateUserBanks(userId, selectedBanks, selectedCurrency);
-
+        userDb.updateUserBanks(userId, selectedBanks);
     }
 
 

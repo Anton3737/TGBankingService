@@ -41,26 +41,4 @@ public class Settings {
 
     }
 
-
-//    public static void displaySettingsMethod(AbsSender absSender, Chat chat) {
-//        SendMessage sendMessage = new SendMessage();
-//        String titleMessage = "Оберіть пункт налаштування";
-//        sendMessage.setText(titleMessage);
-//        sendMessage.setChatId(chat.getId());
-//
-//        PutMarks<String> marks = new PutMarks<>();
-//
-//        sendMessage.setReplyMarkup(marks.addButtons(
-//                List.of("Банк", "Валюта", "Кращі пропозиції", "Час сповіщень"),
-//                new ArrayList<>()
-//        ));
-//
-//        try {
-//            absSender.execute(sendMessage);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//            System.out.println("Something wrong with sending settings message :(");
-//        }
-//    }
-
 }

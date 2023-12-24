@@ -95,21 +95,21 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
                 UsersDTO userInfo = db.getUser((int) userId);
                 List<String> currencyList = userInfo.getCurrency();
 
-                if (CurrencyEnum.USD.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
-                } else if (CurrencyEnum.EUR.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
-                } else if (CurrencyEnum.PLZ.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
-                } else if (CurrencyEnum.GBP.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
-                } else if (CurrencyEnum.CHF.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
-
-                } else if (CurrencyEnum.CZK.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.CZK.toString(), currencyList);
+                if (currencyList != null) {
+                    if (CurrencyEnum.USD.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
+                    } else if (CurrencyEnum.EUR.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
+                    } else if (CurrencyEnum.PLZ.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                    } else if (CurrencyEnum.GBP.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
+                    } else if (CurrencyEnum.CHF.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.CHF.toString(), currencyList);
+                    } else if (CurrencyEnum.CZK.toString().equals(data)) {
+                        Currency.currencyChoice(CurrencyEnum.CZK.toString(), currencyList);
+                    }
                 }
-
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
