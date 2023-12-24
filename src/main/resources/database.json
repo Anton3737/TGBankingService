@@ -16,20 +16,6 @@
   "538832410": {
     "bankList": [
       "ПРИВАТБАНК",
-      "USD",
-      "GBP",
-      "CZK"
-    ],
-    "notificationTime": 12,
-    "sumbols": 2
-  },
-  "810071761": {
-    "bankList": [
-      "ПРИВАТБАНК",
-      "USD",
-      "GBP",
-      "CZK",
-      "EUR",
       "ОЩАДБАНК"
     ],
     "notificationTime": 12,

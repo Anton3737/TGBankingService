@@ -52,7 +52,7 @@ public class Command extends BotCommand {
             String buttonTextSettings = keyboard.get(0).get(1).getText();
 
             if ("Отримати інфо".equals(buttonTextInfo)) {
-                Info.getInfoMethod(absSender, chat);
+//                Info.getInfoMethod(absSender, chat);
             } else if ("Налаштування".equals(buttonTextSettings)) {
                 Settings.displaySettingsMethod(absSender, chat);
             }

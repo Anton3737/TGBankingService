@@ -8,13 +8,13 @@ import java.util.List;
 // які будуть додаватись в БД під час підключення до боту
 public class UsersDTO {
     List<String> bankList;
-    List<CurrencyEnum> currencyEnumList;
+    List<String> currencyList;
     int notificationTime;
     int sumbols;
 
-    public UsersDTO(List<String> bankList, List<CurrencyEnum> currencyEnumList, int notificationTime, int sumbols) {
+    public UsersDTO(List<String> bankList, List<String> currencyList, int notificationTime, int sumbols) {
         this.bankList = bankList;
-        this.currencyEnumList = currencyEnumList;
+        this.currencyList = currencyList;
         this.notificationTime = notificationTime;
         this.sumbols = sumbols;
     }
@@ -27,12 +27,12 @@ public class UsersDTO {
         this.bankList = bank;
     }
 
-    public List<CurrencyEnum> getCurrency() {
-        return currencyEnumList;
+    public List<String> getCurrency() {
+        return currencyList;
     }
 
-    public void setCurrency(List<CurrencyEnum> currencyEnum) {
-        this.currencyEnumList = currencyEnum;
+    public void setCurrency(List<String> currencyEnum) {
+        this.currencyList = currencyEnum;
     }
 
     public int getNotificationTime() {

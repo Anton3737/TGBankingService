@@ -17,21 +17,20 @@ import java.util.List;
 public class Settings {
 
 
-
-
-
     public static void displaySettingsMethod(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();
         String titleMessage = "Оберіть пункт налаштування";
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        PutMarks<String> marks = new PutMarks<>();
+        InlineKeyboardButton banks = InlineKeyboardButton.builder().text("Банк").callbackData("Банк").build();
+        InlineKeyboardButton currency = InlineKeyboardButton.builder().text("Валюта").callbackData("Валюта").build();
+        InlineKeyboardButton betterOffers = InlineKeyboardButton.builder().text("Кращі пропозиції").callbackData("Кращі пропозиції").build();
+        InlineKeyboardButton notificationsTime = InlineKeyboardButton.builder().text("Час сповіщень").callbackData("Час сповіщень").build();
 
-        sendMessage.setReplyMarkup(marks.addButtons(
-                List.of("Банк", "Валюта", "Кращі пропозиції", "Час сповіщень"),
-                new ArrayList<>()
-        ));
+        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
+                .keyboard(Collections.singletonList(Arrays.asList(banks, currency, betterOffers, notificationsTime))).build();
+        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
 
         try {
             absSender.execute(sendMessage);
@@ -39,6 +38,29 @@ public class Settings {
             e.printStackTrace();
             System.out.println("Something wrong with sending settings message :(");
         }
+
     }
+
+
+//    public static void displaySettingsMethod(AbsSender absSender, Chat chat) {
+//        SendMessage sendMessage = new SendMessage();
+//        String titleMessage = "Оберіть пункт налаштування";
+//        sendMessage.setText(titleMessage);
+//        sendMessage.setChatId(chat.getId());
+//
+//        PutMarks<String> marks = new PutMarks<>();
+//
+//        sendMessage.setReplyMarkup(marks.addButtons(
+//                List.of("Банк", "Валюта", "Кращі пропозиції", "Час сповіщень"),
+//                new ArrayList<>()
+//        ));
+//
+//        try {
+//            absSender.execute(sendMessage);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//            System.out.println("Something wrong with sending settings message :(");
+//        }
+//    }
 
 }

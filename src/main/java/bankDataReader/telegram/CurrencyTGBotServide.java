@@ -93,7 +93,7 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
                 // Use testing data
                 UsersDTO userInfo = db.getUser((int) userId);
-                List<String> currencyList = userInfo.getBank();
+                List<String> currencyList = userInfo.getCurrency();
 
                 if (CurrencyEnum.USD.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);

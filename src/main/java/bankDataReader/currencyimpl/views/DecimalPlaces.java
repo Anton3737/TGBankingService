@@ -22,26 +22,48 @@ public class DecimalPlaces {
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
-        try (DataBase db = DataBase.getInstance()) {
-            UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
-            int sumbols = userInfo.getSumbols();
+        InlineKeyboardButton two = InlineKeyboardButton.builder().text("2").callbackData("2").build();
+        InlineKeyboardButton three = InlineKeyboardButton.builder().text("3").callbackData("3").build();
+        InlineKeyboardButton four = InlineKeyboardButton.builder().text("4").callbackData("4").build();
 
-            PutMarks<String> sumbolsAftercoma = new PutMarks<>();
-
-            sendMessage.setReplyMarkup(sumbolsAftercoma.addButtons(
-                    List.of("2", "3", "4"),
-                    List.of(String.valueOf(sumbols))
-            ));
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        InlineKeyboardMarkup inlineKeyboardMarkup = InlineKeyboardMarkup.builder()
+                .keyboard(Collections.singletonList(Arrays.asList(two, three, four))).build();
+        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
 
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace();
             System.out.println("Something wrong with sending settings message :(");
         }
     }
+
+//    public static void decimalPlacesMethod(AbsSender absSender, Chat chat) {
+//        SendMessage sendMessage = new SendMessage();
+//        String titleMessage = "Оберіть кількість символів після коми";
+//        sendMessage.setText(titleMessage);
+//        sendMessage.setChatId(chat.getId());
+//
+//        try (DataBase db = DataBase.getInstance()) {
+//            UsersDTO userInfo = db.getUser(Math.toIntExact(chat.getId()));
+//            int sumbols = userInfo.getSumbols();
+//
+//            PutMarks<String> sumbolsAftercoma = new PutMarks<>();
+//
+//            sendMessage.setReplyMarkup(sumbolsAftercoma.addButtons(
+//                    List.of("2", "3", "4"),
+//                    List.of(String.valueOf(sumbols))
+//            ));
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        try {
+//            absSender.execute(sendMessage);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace(System.out);
+//            System.out.println("Something wrong with sending settings message :(");
+//        }
+//    }
 }

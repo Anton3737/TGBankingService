@@ -19,7 +19,7 @@ public class User {
             // Set default settings
             user = new UsersDTO(
                     List.of(BanksName.MONOBANK.toString()),
-                    List.of(CurrencyEnum.USD),
+                    List.of(CurrencyEnum.USD.toString()),
                     12,
                     2
             );
@@ -30,12 +30,13 @@ public class User {
         return user;
     }
 
-    public void updateUserBanks(int userId, List<String> selectedBanks) {
+    public void updateUserBanks(int userId, List<String> selectedBanks,List<String> selectedCurrency) {
         try (DataBase database = DataBase.getInstance()) {
             UsersDTO user = database.getUser(userId);
 
             if (user != null) {
                 user.setBank(selectedBanks);
+                user.setCurrency(selectedCurrency);
             }
 
         } catch (Exception e) {
