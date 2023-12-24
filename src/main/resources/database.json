@@ -6,5 +6,15 @@
     ],
     "notificationTime": 12,
     "sumbols": 2
+  },
+  "538832410": {
+    "bankList": [
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 12,
+    "sumbols": 2
   }
 }
