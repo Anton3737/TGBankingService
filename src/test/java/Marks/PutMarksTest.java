@@ -15,9 +15,10 @@ public class PutMarksTest {
     public void putFuncTest(){
         try (DataBase db = DataBase.getInstance()){
             UsersDTO userInfo = db.getUser(0);
-            List<String> currencyList = userInfo.getCurrency();
 
-//            currencyList.add()
+            List<String> banks = userInfo.getBank();
+            PutMarks<String> putClass = new PutMarks<>();
+            putClass.addButtons(banks, banks);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
