@@ -5,6 +5,8 @@ import bankDataReader.db.DataBase;
 import bankDataReader.dto.BankData;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.CurrencyEnum;
+import org.telegram.telegrambots.meta.api.objects.Chat;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -55,17 +57,15 @@ public class TelegramPrettyPrinter {
 //        return df.format(number);
 //    }
 
-    public static String resultDataForPrint() {
+    public static String resultDataForPrint(Chat chat) {
 
         try (DataBase db = DataBase.getInstance()) {
             // Testing data
 
-            int userId = 538832410;
+            long userId = chat.getId();
 
             // Use testing data
-            UsersDTO userInfo = db.getUser(userId);
-
-//            String url = "https://minfin.com.ua/ua/currency/banks/";
+            UsersDTO userInfo = db.getUser((int) userId);
 
             String tmp = "";
             List<BankData> dataInfo = new ArrayList<>();

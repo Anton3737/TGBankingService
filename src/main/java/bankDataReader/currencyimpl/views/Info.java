@@ -9,12 +9,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class Info {
 
 
-
     // Чекаємо BD
 
     public static void getInfoMethod(AbsSender absSender, Chat chat) {
         SendMessage sendMessage = new SendMessage();
-        String titleMessage = TelegramPrettyPrinter.resultDataForPrint();
+        String titleMessage = TelegramPrettyPrinter.resultDataForPrint(chat);
         sendMessage.setText(titleMessage);
         sendMessage.setChatId(chat.getId());
 
