@@ -13,7 +13,7 @@ import java.util.List;
 public class TelegramPrettyPrinter {
 
     private static String formatNumber(double number, int digits) {
-        DecimalFormat df = new DecimalFormat("#." + "#".repeat(Math.max(0, digits)));
+        DecimalFormat df = new DecimalFormat("#." + "0".repeat(Math.max(digits, digits)));
 
         return df.format(number);
     }

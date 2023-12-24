@@ -23,9 +23,9 @@ public class DecimalPlaces {
 
             int afterComa = userInfo.getSymbols();
             PutMarks<String> putClass = new PutMarks<>();
-            sendMessage.setReplyMarkup(putClass.addButtons(List.of("1",
-                    "2",
-                    "3"), List.of(String.valueOf(afterComa))));
+            sendMessage.setReplyMarkup(putClass.addButtons(List.of("2",
+                    "3",
+                    "4"), List.of(String.valueOf(afterComa))));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

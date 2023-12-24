@@ -7,18 +7,18 @@
       "USD"
     ],
     "notificationTime": 12,
-    "sumbols": 2
+    "symbols": 0
   },
   "538832410": {
     "bankList": [
       "MONOBANK",
-      "ПРИВАТБАНК"
+      "ОЩАДБАНК"
     ],
     "currencyList": [
       "USD",
-      "GBP"
+      "EUR"
     ],
     "notificationTime": 12,
-    "sumbols": 2
+    "symbols": 2
   }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class PutMarks<T> {
 
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams) {
-        return this.addButtons(buttonTexts, userParams, 1);
+        return this.addButtons(buttonTexts, userParams, 3);
     }
 
     public InlineKeyboardMarkup addButtons(List<T> buttonTexts, List<String> userParams, int rows) {

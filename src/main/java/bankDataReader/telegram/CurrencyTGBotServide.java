@@ -63,14 +63,11 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
 
             //  Banks
             try (DataBase db = DataBase.getInstance()) {
-                // Testing data
-                long userId = callbackQuery.getMessage().getChat().getId();
+                 long userId = callbackQuery.getMessage().getChat().getId();
 
-                // Use testing data
                 UsersDTO userInfo = db.getUser((int) userId);
                 List<String> banks = userInfo.getBank();
 
-                // Check choice
                 if (BanksName.PRIVATBANK.toString().equals(data)) {
                     Banks.oneChoice(BanksName.PRIVATBANK.toString(), banks);
 
@@ -86,12 +83,11 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
 
-            //
+            // Currency
             try (DataBase db = DataBase.getInstance()) {
-                // Testing data
+
                 long userId = callbackQuery.getMessage().getChat().getId();
 
-                // Use testing data
                 UsersDTO userInfo = db.getUser((int) userId);
                 List<String> currencyList = userInfo.getCurrency();
 
@@ -127,10 +123,17 @@ public class CurrencyTGBotServide extends TelegramLongPollingCommandBot {
             }
 
             // DecimalPlaces
-            if ("2".equals(data)||"3".equals(data)||"4".equals(data)) {
-                DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
-            }
+            if ("2".equals(data) || "3".equals(data) || "4".equals(data)) {
+                try (DataBase db = DataBase.getInstance()) {
+                    long userId = callbackQuery.getMessage().getChat().getId();
 
+                    UsersDTO userInfo = db.getUser((int) userId);
+                    userInfo.setSymbols(Integer.parseInt(data));
+                    DecimalPlaces.decimalPlacesMethod(this, callbackQuery.getMessage().getChat());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 
