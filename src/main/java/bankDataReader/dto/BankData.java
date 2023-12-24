@@ -1,14 +1,24 @@
 package bankDataReader.dto;
 
 public class BankData {
+    private String currencyCode;
     private String name;
     private double priceToBuy;
     private double priceForSale;
 
-    public BankData(String name, double priceToBuy, double priceForSale) {
+    public BankData(String currencyCode, String name, double priceToBuy, double priceForSale) {
+        this.currencyCode = currencyCode;
         this.name = name;
         this.priceToBuy = priceToBuy;
         this.priceForSale = priceForSale;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
     public String getName() {
@@ -36,12 +46,9 @@ public class BankData {
     }
 
 
-    @Override
-    public String toString() {
-        return "BankData{" +
-                "name='" + name + '\'' +
-                ", priceToBuy=" + priceToBuy +
-                ", priceForSale=" + priceForSale +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return currencyCode.toUpperCase() + "\n" + name + "\n" + "Купівля " + priceToBuy + "\n" + "Продаж " + priceForSale + "\n";
+//
+//    }
 }
