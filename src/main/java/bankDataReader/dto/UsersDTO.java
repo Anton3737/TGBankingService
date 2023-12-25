@@ -1,9 +1,8 @@
 package bankDataReader.dto;
 
 import java.util.List;
+import java.util.Objects;
 
-//Описовий клас для створення екземплярів класу для наших користувачів,
-// які будуть додаватись в БД під час підключення до боту
 public class UsersDTO {
     List<String> bankList;
     List<String> currencyList;
@@ -47,5 +46,24 @@ public class UsersDTO {
 
     public void setSymbols(int symbols) {
         this.symbols = symbols;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(notificationTime, symbols);
+        result = 31 * result + Objects.hashCode(bankList);
+        result = 31 * result + Objects.hashCode(currencyList);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        UsersDTO usersDTO = (UsersDTO) obj;
+        return notificationTime == usersDTO.notificationTime &&
+                symbols == usersDTO.symbols &&
+                Objects.equals(bankList, usersDTO.bankList) &&
+                Objects.equals(currencyList, usersDTO.currencyList);
     }
 }

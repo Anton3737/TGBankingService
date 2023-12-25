@@ -5,18 +5,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.Map;
-import java.util.Objects;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataBase extends User implements AutoCloseable{
 
     private static DataBase instance;
     private static int initialHash;
+    private static String fileName = "database.json";
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
@@ -24,7 +22,25 @@ public class DataBase extends User implements AutoCloseable{
 
     protected static Map<Integer, UsersDTO> data;
     private DataBase() {
-        try (Reader reader = new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/database.json")))) {
+        String path = new File("").getAbsolutePath();
+        fileName = path+"/"+fileName;
+        File newFile = new File(fileName);
+
+        if (!newFile.exists()) {
+            try {
+                if (newFile.createNewFile()) {
+
+                    try (FileWriter writer = new FileWriter(newFile)) {
+                        Map<Integer, UsersDTO> initialData = new HashMap<>();
+                        gson.toJson(initialData, writer);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace(System.out);
+            }
+        }
+
+        try (Reader reader = new FileReader(fileName)) {
             Type type = new TypeToken<Map<Integer, UsersDTO>>(){}.getType();
 
             DataBase.data = gson.fromJson(reader, type);
@@ -64,9 +80,7 @@ public class DataBase extends User implements AutoCloseable{
      * @throws IOException
      */
     public void saveJsonData(Map<Integer, UsersDTO> data) throws IOException {
-        String filePath = "src/main/resources/";
-        String fileName = "database.json";
-        try (FileWriter writer = new FileWriter(filePath+fileName)) {
+        try (FileWriter writer = new FileWriter(fileName)) {
             gson.toJson(data, writer);
         }
     }
@@ -76,7 +90,7 @@ public class DataBase extends User implements AutoCloseable{
      */
     @Override
     public void close() throws IOException {
-        if (data.hashCode() == initialHash) {
+        if (data.hashCode() != initialHash) {
             this.saveJsonData(data);
             initialHash = data.hashCode();
         }

@@ -1,4 +1,4 @@
-package bankDataReader.currencyimpl.currencyInterface;
+package bankDataReader.currencyParser.marks;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;

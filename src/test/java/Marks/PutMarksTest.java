@@ -1,13 +1,12 @@
 package Marks;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.currencyParser.marks.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
 import bankDataReader.enums.BanksName;
 
 import org.junit.Test;
 
-import java.util.Currency;
 import java.util.List;
 
 public class PutMarksTest {

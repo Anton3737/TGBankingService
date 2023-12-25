@@ -1,4 +1,4 @@
-package bankDataReader.currencyimpl.views;
+package bankDataReader.currencyParser.views;
 
 import bankDataReader.telegram.TelegramPrettyPrinter;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

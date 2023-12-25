@@ -6,7 +6,7 @@ public enum CurrencyEnum {
     GBP,
     CHF,
     SEK,
-    PLZ,
+    PLN,
     NOK,
     JPY,
     DKK,
@@ -19,39 +19,22 @@ public enum CurrencyEnum {
 
     @Override
     public String toString() {
-        switch (this) {
-            case USD:
-                return "USD";
-            case EUR:
-                return "EUR";
-            case GBP:
-                return "GBP";
-            case CHF:
-                return "CHF";
-            case SEK:
-                return "SEK";
-            case PLZ:
-                return "PLZ";
-            case NOK:
-                return "NOK";
-            case JPY:
-                return "JPY";
-            case DKK:
-                return "DKK";
-            case CNY:
-                return "CNY";
-            case CAD:
-                return "CAD";
-            case AUD:
-                return "AUD";
-            case HUF:
-                return "HUF";
-            case CZK:
-                return "CZK";
-            case ISL:
-                return "ISL";
-            default:
-                return "Невідома валюта";
-        }
+        return switch (this) {
+            case USD -> "USD";
+            case EUR -> "EUR";
+            case GBP -> "GBP";
+            case CHF -> "CHF";
+            case SEK -> "SEK";
+            case PLN -> "PLN";
+            case NOK -> "NOK";
+            case JPY -> "JPY";
+            case DKK -> "DKK";
+            case CNY -> "CNY";
+            case CAD -> "CAD";
+            case AUD -> "AUD";
+            case HUF -> "HUF";
+            case CZK -> "CZK";
+            case ISL -> "ISL";
+        };
     }
 }

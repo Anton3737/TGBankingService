@@ -1,6 +1,6 @@
-package bankDataReader.currencyimpl.views;
+package bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.currencyParser.marks.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.dto.UsersDTO;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -23,9 +23,9 @@ public class DecimalPlaces {
 
             int afterComa = userInfo.getSymbols();
             PutMarks<String> putClass = new PutMarks<>();
-            sendMessage.setReplyMarkup(putClass.addButtons(List.of("1",
-                    "2",
-                    "3"), List.of(String.valueOf(afterComa))));
+            sendMessage.setReplyMarkup(putClass.addButtons(List.of("2",
+                    "3",
+                    "4"), List.of(String.valueOf(afterComa))));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

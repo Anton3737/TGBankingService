@@ -6,14 +6,11 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class TelegramBotService {
 
-    CurrencyTGBotServide currencyTGBotServide;
-
     public TelegramBotService() {
-        currencyTGBotServide = new CurrencyTGBotServide();
 
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(currencyTGBotServide);
+            telegramBotsApi.registerBot(new CurrencyTGBotService());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

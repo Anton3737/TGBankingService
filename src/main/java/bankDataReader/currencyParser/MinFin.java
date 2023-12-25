@@ -1,15 +1,12 @@
-package bankDataReader.currencyimpl;
+package bankDataReader.currencyParser;
 
 import bankDataReader.dto.BankData;
 import bankDataReader.enums.BanksName;
-import bankDataReader.enums.CurrencyEnum;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +66,6 @@ public class MinFin {
 
 //        System.out.println("Collection size: " + bankDataList.size());
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new File("src/main/java/bankDataReader/BankData.json"), bankDataList);
-
         return bankDataList;
     }
 
@@ -88,7 +82,7 @@ public class MinFin {
             try {
                 price = Double.parseDouble(priceStr);
             } catch (NumberFormatException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
             }
         }
 //        System.out.println(price);

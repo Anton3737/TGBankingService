@@ -1,21 +1,16 @@
-package bankDataReader.currencyimpl.views;
+package bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.currencyParser.marks.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
 import bankDataReader.dto.UsersDTO;
-import bankDataReader.enums.BanksName;
 import bankDataReader.enums.CurrencyEnum;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Currency {
@@ -57,7 +52,7 @@ public class Currency {
             PutMarks<CurrencyEnum> putClass = new PutMarks<>();
 
             sendMessage.setReplyMarkup(putClass.addButtons(List.of(CurrencyEnum.USD, CurrencyEnum.EUR,
-                    CurrencyEnum.PLZ, CurrencyEnum.GBP, CurrencyEnum.CHF,
+                    CurrencyEnum.PLN, CurrencyEnum.GBP, CurrencyEnum.CHF,
                     CurrencyEnum.CZK), userCurrency));
 
         } catch (Exception e) {

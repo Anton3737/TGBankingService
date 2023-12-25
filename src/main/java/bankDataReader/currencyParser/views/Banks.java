@@ -1,6 +1,6 @@
-package bankDataReader.currencyimpl.views;
+package bankDataReader.currencyParser.views;
 
-import bankDataReader.currencyimpl.currencyInterface.PutMarks;
+import bankDataReader.currencyParser.marks.PutMarks;
 import bankDataReader.db.DataBase;
 import bankDataReader.db.User;
 import bankDataReader.dto.UsersDTO;
@@ -49,9 +49,10 @@ public class Banks {
 
             List<String> banks = userInfo.getBank();
             PutMarks<BanksName> putClass = new PutMarks<>();
-            sendMessage.setReplyMarkup(putClass.addButtons(List.of(BanksName.PRIVATBANK,
+            List<BanksName> bankButtons = List.of(BanksName.PRIVATBANK,
                     BanksName.MONOBANK,
-                    BanksName.OSHCHADBANK), banks));
+                    BanksName.OSHCHADBANK);
+            sendMessage.setReplyMarkup(putClass.addButtons(bankButtons, banks, 1));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

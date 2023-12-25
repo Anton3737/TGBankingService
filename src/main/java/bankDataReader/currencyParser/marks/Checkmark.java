@@ -1,4 +1,4 @@
-package bankDataReader.currencyimpl.currencyInterface;
+package bankDataReader.currencyParser.marks;
 
 public class Checkmark {
     /**

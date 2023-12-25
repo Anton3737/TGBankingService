@@ -17,7 +17,7 @@ public class User {
             jsonData.put(userId, new UsersDTO(
                     new ArrayList<>(List.of(BanksName.MONOBANK.toString())),
                     new ArrayList<>(List.of(CurrencyEnum.USD.toString())),
-                    12,
+                    -1,
                     2
             ));
         }
