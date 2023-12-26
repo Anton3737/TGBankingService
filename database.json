@@ -1,0 +1,44 @@
+{
+  "657551212": {
+    "bankList": [
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": -1,
+    "symbols": 2
+  },
+  "538832410": {
+    "bankList": [
+      "MONOBANK"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": 9,
+    "symbols": 2
+  },
+  "723689342": {
+    "bankList": [
+      "MONOBANK",
+      "ПРИВАТБАНК"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": -1,
+    "symbols": 2
+  },
+  "810071761": {
+    "bankList": [
+      "MONOBANK",
+      "ПРИВАТБАНК"
+    ],
+    "currencyList": [
+      "USD"
+    ],
+    "notificationTime": -1,
+    "symbols": 2
+  }
+}
