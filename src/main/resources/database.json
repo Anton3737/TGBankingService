@@ -11,7 +11,9 @@
   },
   "538832410": {
     "bankList": [
-      "MONOBANK"
+      "MONOBANK",
+      "ПРИВАТБАНК",
+      "ОЩАДБАНК"
     ],
     "currencyList": [
       "USD",

@@ -66,8 +66,8 @@ public class DataBaseTest {
                     Currency.currencyChoice(CurrencyEnum.USD.toString(), currencyList);
                 } else if (CurrencyEnum.EUR.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.EUR.toString(), currencyList);
-                } else if (CurrencyEnum.PLZ.toString().equals(data)) {
-                    Currency.currencyChoice(CurrencyEnum.PLZ.toString(), currencyList);
+                } else if (CurrencyEnum.PLN.toString().equals(data)) {
+                    Currency.currencyChoice(CurrencyEnum.PLN.toString(), currencyList);
                 } else if (CurrencyEnum.GBP.toString().equals(data)) {
                     Currency.currencyChoice(CurrencyEnum.GBP.toString(), currencyList);
                 } else if (CurrencyEnum.CHF.toString().equals(data)) {
